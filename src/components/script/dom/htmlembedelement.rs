@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-use dom::bindings::codegen::BindingDeclarations::HTMLEmbedElementBinding;
+use dom::bindings::codegen::Bindings::HTMLEmbedElementBinding;
 use dom::bindings::codegen::InheritTypes::HTMLEmbedElementDerived;
 use dom::bindings::js::{JSRef, Temporary};
 use dom::bindings::error::ErrorResult;
@@ -55,7 +55,7 @@ pub trait HTMLEmbedElementMethods {
 
 impl<'a> HTMLEmbedElementMethods for JSRef<'a, HTMLEmbedElement> {
     fn Src(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetSrc(&mut self, _src: DOMString) -> ErrorResult {
@@ -63,7 +63,7 @@ impl<'a> HTMLEmbedElementMethods for JSRef<'a, HTMLEmbedElement> {
     }
 
     fn Type(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetType(&mut self, _type: DOMString) -> ErrorResult {
@@ -71,7 +71,7 @@ impl<'a> HTMLEmbedElementMethods for JSRef<'a, HTMLEmbedElement> {
     }
 
     fn Width(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetWidth(&mut self, _width: DOMString) -> ErrorResult {
@@ -79,7 +79,7 @@ impl<'a> HTMLEmbedElementMethods for JSRef<'a, HTMLEmbedElement> {
     }
 
     fn Height(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetHeight(&mut self, _height: DOMString) -> ErrorResult {
@@ -87,7 +87,7 @@ impl<'a> HTMLEmbedElementMethods for JSRef<'a, HTMLEmbedElement> {
     }
 
     fn Align(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetAlign(&mut self, _type: DOMString) -> ErrorResult {
@@ -95,7 +95,7 @@ impl<'a> HTMLEmbedElementMethods for JSRef<'a, HTMLEmbedElement> {
     }
 
     fn Name(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetName(&mut self, _type: DOMString) -> ErrorResult {

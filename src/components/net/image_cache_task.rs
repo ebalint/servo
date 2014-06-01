@@ -36,7 +36,7 @@ pub enum Msg {
 
     // FIXME: We can probably get rid of this Cell now
     /// Used be the prefetch tasks to post back image binaries
-    StorePrefetchedImageData(Url, Result<~[u8], ()>),
+    StorePrefetchedImageData(Url, Result<Vec<u8>, ()>),
 
     /// Used by the decoder tasks to post decoded images back to the cache
     StoreImage(Url, Option<Arc<Box<Image>>>),
@@ -151,7 +151,7 @@ struct ImageCache {
 enum ImageState {
     Init,
     Prefetching(AfterPrefetch),
-    Prefetched(~[u8]),
+    Prefetched(Vec<u8>),
     Decoding,
     Decoded(Arc<Box<Image>>),
     Failed
@@ -274,7 +274,7 @@ impl ImageCache {
         }
     }
 
-    fn store_prefetched_image_data(&mut self, url: Url, data: Result<~[u8], ()>) {
+    fn store_prefetched_image_data(&mut self, url: Url, data: Result<Vec<u8>, ()>) {
         match self.get_state(url.clone()) {
           Prefetching(next_step) => {
             match data {
@@ -322,7 +322,7 @@ impl ImageCache {
                 spawn(proc() {
                     let url = url_clone;
                     debug!("image_cache_task: started image decode for {:s}", url.to_str());
-                    let image = load_from_memory(data);
+                    let image = load_from_memory(data.as_slice());
                     let image = if image.is_some() {
                         Some(Arc::new(box image.unwrap()))
                     } else {
@@ -456,7 +456,7 @@ impl ImageCacheTask {
     }
 }
 
-fn load_image_data(url: Url, resource_task: ResourceTask) -> Result<~[u8], ()> {
+fn load_image_data(url: Url, resource_task: ResourceTask) -> Result<Vec<u8>, ()> {
     let (response_chan, response_port) = channel();
     resource_task.send(resource_task::Load(LoadData::new(url), response_chan));
 

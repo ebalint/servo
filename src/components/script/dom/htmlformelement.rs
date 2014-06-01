@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-use dom::bindings::codegen::BindingDeclarations::HTMLFormElementBinding;
+use dom::bindings::codegen::Bindings::HTMLFormElementBinding;
 use dom::bindings::codegen::InheritTypes::HTMLFormElementDerived;
 use dom::bindings::js::{JSRef, Temporary};
 use dom::bindings::error::ErrorResult;
@@ -67,7 +67,7 @@ pub trait HTMLFormElementMethods {
 
 impl<'a> HTMLFormElementMethods for JSRef<'a, HTMLFormElement> {
     fn AcceptCharset(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetAcceptCharset(&mut self, _accept_charset: DOMString) -> ErrorResult {
@@ -75,7 +75,7 @@ impl<'a> HTMLFormElementMethods for JSRef<'a, HTMLFormElement> {
     }
 
     fn Action(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetAction(&mut self, _action: DOMString) -> ErrorResult {
@@ -83,7 +83,7 @@ impl<'a> HTMLFormElementMethods for JSRef<'a, HTMLFormElement> {
     }
 
     fn Autocomplete(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetAutocomplete(&mut self, _autocomplete: DOMString) -> ErrorResult {
@@ -91,7 +91,7 @@ impl<'a> HTMLFormElementMethods for JSRef<'a, HTMLFormElement> {
     }
 
     fn Enctype(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetEnctype(&mut self, _enctype: DOMString) -> ErrorResult {
@@ -99,7 +99,7 @@ impl<'a> HTMLFormElementMethods for JSRef<'a, HTMLFormElement> {
     }
 
     fn Encoding(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetEncoding(&mut self, _encoding: DOMString) -> ErrorResult {
@@ -107,7 +107,7 @@ impl<'a> HTMLFormElementMethods for JSRef<'a, HTMLFormElement> {
     }
 
     fn Method(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetMethod(&mut self, _method: DOMString) -> ErrorResult {
@@ -115,7 +115,7 @@ impl<'a> HTMLFormElementMethods for JSRef<'a, HTMLFormElement> {
     }
 
     fn Name(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetName(&mut self, _name: DOMString) -> ErrorResult {
@@ -131,7 +131,7 @@ impl<'a> HTMLFormElementMethods for JSRef<'a, HTMLFormElement> {
     }
 
     fn Target(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetTarget(&mut self, _target: DOMString) -> ErrorResult {

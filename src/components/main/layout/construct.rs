@@ -590,7 +590,7 @@ impl<'a> FlowConstructor<'a> {
                                                                               whitespace_style))
                         => {
                     // Instantiate the whitespace box.
-                    let box_info = UnscannedTextBox(UnscannedTextBoxInfo::from_text(" ".to_owned()));
+                    let box_info = UnscannedTextBox(UnscannedTextBoxInfo::from_text(" ".to_string()));
                     let fragment = Box::from_opaque_node_and_style(whitespace_node,
                                                                    whitespace_style.clone(),
                                                                    box_info);
@@ -989,7 +989,7 @@ impl<'ln> NodeUtils for ThreadSafeLayoutNode<'ln> {
             Some(TextNodeTypeId) => {
                 unsafe {
                     let text: JS<Text> = self.get_jsmanaged().transmute_copy();
-                    if !is_whitespace((*text.unsafe_get()).characterdata.data) {
+                    if !is_whitespace((*text.unsafe_get()).characterdata.data.as_slice()) {
                         return false
                     }
 

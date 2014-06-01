@@ -3,7 +3,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 use dom::attr::AttrMethods;
-use dom::bindings::codegen::BindingDeclarations::HTMLObjectElementBinding;
+use dom::bindings::codegen::Bindings::HTMLObjectElementBinding;
 use dom::bindings::codegen::InheritTypes::HTMLObjectElementDerived;
 use dom::bindings::codegen::InheritTypes::{ElementCast, HTMLElementCast};
 use dom::bindings::js::{JSRef, Temporary};
@@ -65,8 +65,8 @@ impl<'a> ProcessDataURL for JSRef<'a, HTMLObjectElement> {
         match (elem.get_attribute(Null, "type").map(|x| x.root().Value()),
                elem.get_attribute(Null, "data").map(|x| x.root().Value())) {
             (None, Some(uri)) => {
-                if is_image_data(uri) {
-                    let data_url = parse_url(uri, url);
+                if is_image_data(uri.as_slice()) {
+                    let data_url = parse_url(uri.as_slice(), url);
                     // Issue #84
                     image_cache.send(image_cache_task::Prefetch(data_url));
                 }
@@ -122,7 +122,7 @@ pub trait HTMLObjectElementMethods {
 
 impl<'a> HTMLObjectElementMethods for JSRef<'a, HTMLObjectElement> {
     fn Data(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetData(&mut self, _data: DOMString) -> ErrorResult {
@@ -130,7 +130,7 @@ impl<'a> HTMLObjectElementMethods for JSRef<'a, HTMLObjectElement> {
     }
 
     fn Type(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetType(&mut self, _type: DOMString) -> ErrorResult {
@@ -138,7 +138,7 @@ impl<'a> HTMLObjectElementMethods for JSRef<'a, HTMLObjectElement> {
     }
 
     fn Name(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetName(&mut self, _name: DOMString) -> ErrorResult {
@@ -146,7 +146,7 @@ impl<'a> HTMLObjectElementMethods for JSRef<'a, HTMLObjectElement> {
     }
 
     fn UseMap(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetUseMap(&mut self, _use_map: DOMString) -> ErrorResult {
@@ -158,7 +158,7 @@ impl<'a> HTMLObjectElementMethods for JSRef<'a, HTMLObjectElement> {
     }
 
     fn Width(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetWidth(&mut self, _width: DOMString) -> ErrorResult {
@@ -166,7 +166,7 @@ impl<'a> HTMLObjectElementMethods for JSRef<'a, HTMLObjectElement> {
     }
 
     fn Height(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetHeight(&mut self, _height: DOMString) -> ErrorResult {
@@ -191,7 +191,7 @@ impl<'a> HTMLObjectElementMethods for JSRef<'a, HTMLObjectElement> {
     }
 
     fn ValidationMessage(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn CheckValidity(&self) -> bool {
@@ -202,7 +202,7 @@ impl<'a> HTMLObjectElementMethods for JSRef<'a, HTMLObjectElement> {
     }
 
     fn Align(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetAlign(&mut self, _align: DOMString) -> ErrorResult {
@@ -210,7 +210,7 @@ impl<'a> HTMLObjectElementMethods for JSRef<'a, HTMLObjectElement> {
     }
 
     fn Archive(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetArchive(&mut self, _archive: DOMString) -> ErrorResult {
@@ -218,7 +218,7 @@ impl<'a> HTMLObjectElementMethods for JSRef<'a, HTMLObjectElement> {
     }
 
     fn Code(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetCode(&mut self, _code: DOMString) -> ErrorResult {
@@ -242,7 +242,7 @@ impl<'a> HTMLObjectElementMethods for JSRef<'a, HTMLObjectElement> {
     }
 
     fn Standby(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetStandby(&mut self, _standby: DOMString) -> ErrorResult {
@@ -258,7 +258,7 @@ impl<'a> HTMLObjectElementMethods for JSRef<'a, HTMLObjectElement> {
     }
 
     fn CodeBase(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetCodeBase(&mut self, _codebase: DOMString) -> ErrorResult {
@@ -266,7 +266,7 @@ impl<'a> HTMLObjectElementMethods for JSRef<'a, HTMLObjectElement> {
     }
 
     fn CodeType(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetCodeType(&mut self, _codetype: DOMString) -> ErrorResult {
@@ -274,7 +274,7 @@ impl<'a> HTMLObjectElementMethods for JSRef<'a, HTMLObjectElement> {
     }
 
     fn Border(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetBorder(&mut self, _border: DOMString) -> ErrorResult {
@@ -298,7 +298,7 @@ impl<'a> VirtualMethods for JSRef<'a, HTMLObjectElement> {
             _ => (),
         }
 
-        if "data" == name {
+        if "data" == name.as_slice() {
             let window = window_from_node(self).root();
             let url = Some(window.deref().get_url());
             self.process_data_url(window.deref().image_cache_task.clone(), url);

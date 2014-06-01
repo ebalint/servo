@@ -2,10 +2,10 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-use dom::bindings::codegen::BindingDeclarations::XMLHttpRequestBinding;
+use dom::bindings::codegen::Bindings::XMLHttpRequestBinding;
 use dom::bindings::str::ByteString;
-use dom::bindings::codegen::BindingDeclarations::XMLHttpRequestBinding::XMLHttpRequestResponseType;
-use dom::bindings::codegen::BindingDeclarations::XMLHttpRequestBinding::XMLHttpRequestResponseTypeValues::{_empty, Text};
+use dom::bindings::codegen::Bindings::XMLHttpRequestBinding::XMLHttpRequestResponseType;
+use dom::bindings::codegen::Bindings::XMLHttpRequestBinding::XMLHttpRequestResponseTypeValues::{_empty, Text};
 use dom::bindings::codegen::InheritTypes::{EventTargetCast, XMLHttpRequestDerived};
 use dom::bindings::error::{ErrorResult, InvalidState, Network, Syntax, Security};
 use dom::document::Document;
@@ -128,19 +128,19 @@ impl XMLHttpRequest {
             timeout: 0u32,
             with_credentials: false,
             upload: None,
-            response_url: "".to_owned(),
+            response_url: "".to_string(),
             status: 0,
             status_text: ByteString::new(vec!()),
             response: ByteString::new(vec!()),
             response_type: _empty,
-            response_text: "".to_owned(),
+            response_text: "".to_string(),
             response_xml: None,
             response_headers: Untraceable::new(ResponseHeaderCollection::new()),
 
             request_method: Untraceable::new(Get),
             request_url: Untraceable::new(parse_url("", None)),
             request_headers: Untraceable::new(RequestHeaderCollection::new()),
-            request_body: "".to_owned(),
+            request_body: "".to_string(),
             sync: false,
             send_flag: false,
 
@@ -246,7 +246,7 @@ impl<'a> XMLHttpRequestMethods<'a> for JSRef<'a, XMLHttpRequest> {
     }
     fn Open(&mut self, method: ByteString, url: DOMString) -> ErrorResult {
         let maybe_method: Option<Method> = method.as_str().and_then(|s| {
-            FromStr::from_str(s.to_ascii_upper()) // rust-http tests against the uppercase versions
+            FromStr::from_str(s.to_ascii_upper().as_slice()) // rust-http tests against the uppercase versions
         });
         // Step 2
         let base: Option<Url> = Some(self.global.root().get_url());
@@ -256,7 +256,7 @@ impl<'a> XMLHttpRequestMethods<'a> for JSRef<'a, XMLHttpRequest> {
                 *self.request_method = maybe_method.unwrap();
 
                 // Step 6
-                let parsed_url = match try_parse_url(url, base) {
+                let parsed_url = match try_parse_url(url.as_slice(), base) {
                     Ok(parsed) => parsed,
                     Err(_) => return Err(Syntax) // Step 7
                 };
@@ -314,7 +314,7 @@ impl<'a> XMLHttpRequestMethods<'a> for JSRef<'a, XMLHttpRequest> {
                     "upgrade" | "user-agent" | "via" => {
                         return Ok(()); // Step 5
                     },
-                    _ => StrBuf::from_str(s)
+                    _ => String::from_str(s)
                 }
             },
             None => return Err(Syntax)
@@ -396,7 +396,7 @@ impl<'a> XMLHttpRequestMethods<'a> for JSRef<'a, XMLHttpRequest> {
 
         // XXXManishearth deal with the Origin/Referer/Accept headers
         // XXXManishearth the below is only valid when content type is not already set by the user.
-        self.insert_trusted_header("content-type".to_owned(), "text/plain;charset=UTF-8".to_owned());
+        self.insert_trusted_header("content-type".to_string(), "text/plain;charset=UTF-8".to_string());
         load_data.headers = (*self.request_headers).clone();
         load_data.method = (*self.request_method).clone();
         if self.sync {
@@ -448,7 +448,7 @@ impl<'a> XMLHttpRequestMethods<'a> for JSRef<'a, XMLHttpRequest> {
                 if self.ready_state == XHRDone || self.ready_state == Loading {
                     self.response.to_jsval(cx)
                 } else {
-                    "".to_owned().to_jsval(cx)
+                    "".to_string().to_jsval(cx)
                 }
             },
             _ => {
@@ -505,7 +505,7 @@ trait PrivateXMLHttpRequestHelpers {
     fn release(&mut self);
     fn change_ready_state(&mut self, XMLHttpRequestState);
     fn process_partial_response(&mut self, progress: XHRProgress);
-    fn insert_trusted_header(&mut self, name: ~str, value: ~str);
+    fn insert_trusted_header(&mut self, name: String, value: String);
 }
 
 impl<'a> PrivateXMLHttpRequestHelpers for JSRef<'a, XMLHttpRequest> {
@@ -529,7 +529,7 @@ impl<'a> PrivateXMLHttpRequestHelpers for JSRef<'a, XMLHttpRequest> {
         self.ready_state = rs;
         let win = &*self.global.root();
         let mut event = Event::new(win).root();
-        event.InitEvent("readystatechange".to_owned(), false, true);
+        event.InitEvent("readystatechange".to_string(), false, true);
         let target: &JSRef<EventTarget> = EventTargetCast::from_ref(self);
         target.dispatch_event_with_target(None, &mut *event).ok();
     }
@@ -569,14 +569,14 @@ impl<'a> PrivateXMLHttpRequestHelpers for JSRef<'a, XMLHttpRequest> {
         }
     }
 
-    fn insert_trusted_header(&mut self, name: ~str, value: ~str) {
+    fn insert_trusted_header(&mut self, name: String, value: String) {
         // Insert a header without checking spec-compliance
         // Use for hardcoded headers
         let collection = self.request_headers.deref_mut();
         let value_bytes = value.into_bytes();
-        let mut reader = BufReader::new(value_bytes);
+        let mut reader = BufReader::new(value_bytes.as_slice());
         let maybe_header: Option<Header> = HeaderEnum::value_from_stream(
-                                                                StrBuf::from_str(name),
+                                                                String::from_str(name.as_slice()),
                                                                 &mut HeaderValueByteIterator::new(&mut reader));
         collection.insert(maybe_header.unwrap());
     }

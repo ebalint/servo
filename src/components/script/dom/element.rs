@@ -6,7 +6,7 @@
 
 use dom::attr::{Attr, ReplacedAttr, FirstSetAttr, AttrMethods};
 use dom::attrlist::AttrList;
-use dom::bindings::codegen::BindingDeclarations::ElementBinding;
+use dom::bindings::codegen::Bindings::ElementBinding;
 use dom::bindings::codegen::InheritTypes::{ElementDerived, NodeCast};
 use dom::bindings::js::{JS, JSRef, Temporary, TemporaryPushable};
 use dom::bindings::js::{OptionalSettable, OptionalRootable, Root};
@@ -30,7 +30,7 @@ use servo_util::namespace::{Namespace, Null};
 use servo_util::str::{DOMString, null_str_as_empty_ref, split_html_space_chars};
 
 use std::ascii::StrAsciiExt;
-use std::cast;
+use std::mem;
 
 #[deriving(Encodable)]
 pub struct Element {
@@ -169,10 +169,10 @@ impl RawLayoutElementHelpers for Element {
                                       -> Option<&'static str> {
         self.attrs.iter().find(|attr: & &JS<Attr>| {
             let attr = attr.unsafe_get();
-            name == (*attr).local_name && (*attr).namespace == *namespace
+            name == (*attr).local_name.as_slice() && (*attr).namespace == *namespace
        }).map(|attr| {
             let attr = attr.unsafe_get();
-            cast::transmute((*attr).value.as_slice())
+            mem::transmute((*attr).value.as_slice())
         })
     }
 }
@@ -236,7 +236,7 @@ impl<'a> AttributeHandlers for JSRef<'a, Element> {
             let same_name = if is_html_element {
                 name.to_ascii_lower() == attr.local_name
             } else {
-                name == attr.local_name
+                name == attr.local_name.as_slice()
             };
 
             same_name && attr.namespace == namespace
@@ -273,7 +273,7 @@ impl<'a> AttributeHandlers for JSRef<'a, Element> {
 
         let position: |&JSRef<Attr>| -> bool =
             if self.html_element_in_html_document() {
-                |attr| attr.deref().local_name.eq_ignore_ascii_case(local_name)
+                |attr| attr.deref().local_name.as_slice().eq_ignore_ascii_case(local_name.as_slice())
             } else {
                 |attr| attr.deref().local_name == local_name
             };
@@ -343,7 +343,7 @@ impl<'a> AttributeHandlers for JSRef<'a, Element> {
 
     fn has_class(&self, name: &str) -> bool {
         let class_names = self.get_string_attribute("class");
-        let mut classes = split_html_space_chars(class_names);
+        let mut classes = split_html_space_chars(class_names.as_slice());
         classes.any(|class| name == class)
     }
 
@@ -361,17 +361,17 @@ impl<'a> AttributeHandlers for JSRef<'a, Element> {
                 let x = x.root();
                 x.deref().Value()
             }
-            None => "".to_owned()
+            None => "".to_string()
         }
     }
     fn set_string_attribute(&mut self, name: &str, value: DOMString) {
-        assert!(name == name.to_ascii_lower());
-        assert!(self.set_attribute(Null, name.to_owned(), value).is_ok());
+        assert!(name == name.to_ascii_lower().as_slice());
+        assert!(self.set_attribute(Null, name.to_string(), value).is_ok());
     }
 
     fn set_uint_attribute(&mut self, name: &str, value: u32) {
-        assert!(name == name.to_ascii_lower());
-        assert!(self.set_attribute(Null, name.to_owned(), value.to_str()).is_ok());
+        assert!(name == name.to_ascii_lower().as_slice());
+        assert!(self.set_attribute(Null, name.to_string(), value.to_str()).is_ok());
     }
 }
 
@@ -423,7 +423,7 @@ pub trait ElementMethods {
 impl<'a> ElementMethods for JSRef<'a, Element> {
     // http://dom.spec.whatwg.org/#dom-element-namespaceuri
     fn NamespaceURI(&self) -> DOMString {
-        self.namespace.to_str().to_owned()
+        self.namespace.to_str().to_string()
     }
 
     fn LocalName(&self) -> DOMString {
@@ -439,10 +439,11 @@ impl<'a> ElementMethods for JSRef<'a, Element> {
     fn TagName(&self) -> DOMString {
         match self.prefix {
             None => {
-                self.local_name.to_ascii_upper()
+                self.local_name.as_slice().to_ascii_upper()
             }
             Some(ref prefix_str) => {
-                (*prefix_str + ":" + self.local_name).to_ascii_upper()
+                let s = format!("{}:{}", prefix_str, self.local_name);
+                s.as_slice().to_ascii_upper()
             }
         }
     }
@@ -487,11 +488,11 @@ impl<'a> ElementMethods for JSRef<'a, Element> {
     // http://dom.spec.whatwg.org/#dom-element-getattribute
     fn GetAttribute(&self, name: DOMString) -> Option<DOMString> {
         let name = if self.html_element_in_html_document() {
-            name.to_ascii_lower()
+            name.as_slice().to_ascii_lower()
         } else {
             name
         };
-        self.get_attribute(Null, name).root()
+        self.get_attribute(Null, name.as_slice()).root()
                      .map(|s| s.deref().Value())
     }
 
@@ -500,7 +501,7 @@ impl<'a> ElementMethods for JSRef<'a, Element> {
                       namespace: Option<DOMString>,
                       local_name: DOMString) -> Option<DOMString> {
         let namespace = Namespace::from_str(null_str_as_empty_ref(&namespace));
-        self.get_attribute(namespace, local_name).root()
+        self.get_attribute(namespace, local_name.as_slice()).root()
                      .map(|attr| attr.deref().Value())
     }
 
@@ -514,14 +515,14 @@ impl<'a> ElementMethods for JSRef<'a, Element> {
         }
 
         // Step 1.
-        match xml_name_type(name) {
+        match xml_name_type(name.as_slice()) {
             InvalidXMLName => return Err(InvalidCharacter),
             _ => {}
         }
 
         // Step 2.
         let name = if self.html_element_in_html_document() {
-            name.to_ascii_lower()
+            name.as_slice().to_ascii_lower()
         } else {
             name
         };
@@ -546,7 +547,7 @@ impl<'a> ElementMethods for JSRef<'a, Element> {
         // Step 1.
         let namespace = Namespace::from_str(null_str_as_empty_ref(&namespace_url));
 
-        let name_type = xml_name_type(name);
+        let name_type = xml_name_type(name.as_slice());
         match name_type {
             // Step 2.
             InvalidXMLName => return Err(InvalidCharacter),
@@ -578,12 +579,12 @@ impl<'a> ElementMethods for JSRef<'a, Element> {
         }
 
         // Step 7a.
-        if "xmlns" == name && namespace != namespace::XMLNS {
+        if "xmlns" == name.as_slice() && namespace != namespace::XMLNS {
             return Err(NamespaceError);
         }
 
         // Step 8.
-        if namespace == namespace::XMLNS && "xmlns" != name && Some("xmlns".to_owned()) != prefix {
+        if namespace == namespace::XMLNS && "xmlns" != name.as_slice() && Some("xmlns".to_string()) != prefix {
             return Err(NamespaceError);
         }
 
@@ -599,7 +600,7 @@ impl<'a> ElementMethods for JSRef<'a, Element> {
     fn RemoveAttribute(&mut self,
                        name: DOMString) -> ErrorResult {
         let name = if self.html_element_in_html_document() {
-            name.to_ascii_lower()
+            name.as_slice().to_ascii_lower()
         } else {
             name
         };
@@ -635,7 +636,7 @@ impl<'a> ElementMethods for JSRef<'a, Element> {
     fn GetElementsByTagNameNS(&self, maybe_ns: Option<DOMString>,
                               localname: DOMString) -> Temporary<HTMLCollection> {
         let namespace = match maybe_ns {
-            Some(namespace) => Namespace::from_str(namespace),
+            Some(namespace) => Namespace::from_str(namespace.as_slice()),
             None => Null
         };
         let window = window_from_node(self).root();
@@ -698,12 +699,12 @@ impl<'a> ElementMethods for JSRef<'a, Element> {
     }
 }
 
-pub fn get_attribute_parts(name: DOMString) -> (Option<~str>, ~str) {
+pub fn get_attribute_parts(name: DOMString) -> (Option<String>, String) {
     //FIXME: Throw for XML-invalid names
     //FIXME: Throw for XMLNS-invalid names
-    let (prefix, local_name) = if name.contains(":")  {
-        let mut parts = name.splitn(':', 1);
-        (Some(parts.next().unwrap().to_owned()), parts.next().unwrap().to_owned())
+    let (prefix, local_name) = if name.as_slice().contains(":")  {
+        let mut parts = name.as_slice().splitn(':', 1);
+        (Some(parts.next().unwrap().to_string()), parts.next().unwrap().to_string())
     } else {
         (None, name)
     };
@@ -727,7 +728,7 @@ impl<'a> VirtualMethods for JSRef<'a, Element> {
             "style" => {
                 let doc = document_from_node(self).root();
                 let base_url = doc.deref().url().clone();
-                self.deref_mut().style_attribute = Some(style::parse_style_attribute(value, &base_url))
+                self.deref_mut().style_attribute = Some(style::parse_style_attribute(value.as_slice(), &base_url))
             }
             "id" => {
                 let node: &JSRef<Node> = NodeCast::from_ref(self);

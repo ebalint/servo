@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-use dom::bindings::codegen::BindingDeclarations::HTMLTextAreaElementBinding;
+use dom::bindings::codegen::Bindings::HTMLTextAreaElementBinding;
 use dom::bindings::codegen::InheritTypes::HTMLTextAreaElementDerived;
 use dom::bindings::js::{JSRef, Temporary};
 use dom::bindings::error::{ErrorResult, Fallible};
@@ -115,7 +115,7 @@ impl<'a> HTMLTextAreaElementMethods for JSRef<'a, HTMLTextAreaElement> {
     }
 
     fn Name(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetName(&mut self, _name: DOMString) -> ErrorResult {
@@ -123,7 +123,7 @@ impl<'a> HTMLTextAreaElementMethods for JSRef<'a, HTMLTextAreaElement> {
     }
 
     fn Placeholder(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetPlaceholder(&mut self, _placeholder: DOMString) -> ErrorResult {
@@ -155,7 +155,7 @@ impl<'a> HTMLTextAreaElementMethods for JSRef<'a, HTMLTextAreaElement> {
     }
 
     fn Wrap(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetWrap(&mut self, _wrap: DOMString) -> ErrorResult {
@@ -163,14 +163,14 @@ impl<'a> HTMLTextAreaElementMethods for JSRef<'a, HTMLTextAreaElement> {
     }
 
     fn Type(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetType(&mut self, _type: DOMString) {
     }
 
     fn DefaultValue(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetDefaultValue(&mut self, _default_value: DOMString) -> ErrorResult {
@@ -178,7 +178,7 @@ impl<'a> HTMLTextAreaElementMethods for JSRef<'a, HTMLTextAreaElement> {
     }
 
     fn Value(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetValue(&mut self, _value: DOMString) {
@@ -201,7 +201,7 @@ impl<'a> HTMLTextAreaElementMethods for JSRef<'a, HTMLTextAreaElement> {
     }
 
     fn ValidationMessage(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn CheckValidity(&self) -> bool {
@@ -231,7 +231,7 @@ impl<'a> HTMLTextAreaElementMethods for JSRef<'a, HTMLTextAreaElement> {
     }
 
     fn GetSelectionDirection(&self) -> Fallible<DOMString> {
-        Ok("".to_owned())
+        Ok("".to_string())
     }
 
     fn SetSelectionDirection(&self, _selection_direction: DOMString) -> ErrorResult {

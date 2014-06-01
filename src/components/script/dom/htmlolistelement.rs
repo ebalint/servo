@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-use dom::bindings::codegen::BindingDeclarations::HTMLOListElementBinding;
+use dom::bindings::codegen::Bindings::HTMLOListElementBinding;
 use dom::bindings::codegen::InheritTypes::HTMLOListElementDerived;
 use dom::bindings::js::{JSRef, Temporary};
 use dom::bindings::error::ErrorResult;
@@ -66,7 +66,7 @@ impl<'a> HTMLOListElementMethods for JSRef<'a, HTMLOListElement> {
     }
 
     fn Type(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetType(&mut self, _type: DOMString) -> ErrorResult {

@@ -218,6 +218,6 @@ impl Flow for TableRowFlow {
 
 impl fmt::Show for TableRowFlow {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f.buf, "TableRowFlow: {}", self.block_flow.box_)
+        write!(f, "TableRowFlow: {}", self.block_flow.box_)
     }
 }

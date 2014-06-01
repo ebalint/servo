@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-use dom::bindings::codegen::BindingDeclarations::DOMImplementationBinding;
+use dom::bindings::codegen::Bindings::DOMImplementationBinding;
 use dom::bindings::codegen::InheritTypes::NodeCast;
 use dom::bindings::js::{JS, JSRef, Temporary, OptionalRootable};
 use dom::bindings::utils::{Reflector, Reflectable, reflect_dom_object};
@@ -60,7 +60,7 @@ pub trait DOMImplementationMethods {
 impl<'a> DOMImplementationMethods for JSRef<'a, DOMImplementation> {
     // http://dom.spec.whatwg.org/#dom-domimplementation-createdocumenttype
     fn CreateDocumentType(&self, qname: DOMString, pubid: DOMString, sysid: DOMString) -> Fallible<Temporary<DocumentType>> {
-        match xml_name_type(qname) {
+        match xml_name_type(qname.as_slice()) {
             // Step 1.
             InvalidXMLName => Err(InvalidCharacter),
             // Step 2.
@@ -129,18 +129,18 @@ impl<'a> DOMImplementationMethods for JSRef<'a, DOMImplementation> {
 
         {
             // Step 3.
-            let mut doc_type = DocumentType::new("html".to_owned(), None, None, &*doc).root();
+            let mut doc_type = DocumentType::new("html".to_string(), None, None, &*doc).root();
             assert!(doc_node.AppendChild(NodeCast::from_mut_ref(&mut *doc_type)).is_ok());
         }
 
         {
             // Step 4.
-            let mut doc_html = NodeCast::from_temporary(HTMLHtmlElement::new("html".to_owned(), &*doc)).root();
+            let mut doc_html = NodeCast::from_temporary(HTMLHtmlElement::new("html".to_string(), &*doc)).root();
             assert!(doc_node.AppendChild(&mut *doc_html).is_ok());
 
             {
                 // Step 5.
-                let mut doc_head = NodeCast::from_temporary(HTMLHeadElement::new("head".to_owned(), &*doc)).root();
+                let mut doc_head = NodeCast::from_temporary(HTMLHeadElement::new("head".to_string(), &*doc)).root();
                 assert!(doc_html.AppendChild(&mut *doc_head).is_ok());
 
                 // Step 6.
@@ -148,7 +148,7 @@ impl<'a> DOMImplementationMethods for JSRef<'a, DOMImplementation> {
                     None => (),
                     Some(title_str) => {
                         // Step 6.1.
-                        let mut doc_title = NodeCast::from_temporary(HTMLTitleElement::new("title".to_owned(), &*doc)).root();
+                        let mut doc_title = NodeCast::from_temporary(HTMLTitleElement::new("title".to_string(), &*doc)).root();
                         assert!(doc_head.AppendChild(&mut *doc_title).is_ok());
 
                         // Step 6.2.
@@ -159,7 +159,7 @@ impl<'a> DOMImplementationMethods for JSRef<'a, DOMImplementation> {
             }
 
             // Step 7.
-            let mut doc_body = HTMLBodyElement::new("body".to_owned(), &*doc).root();
+            let mut doc_body = HTMLBodyElement::new("body".to_string(), &*doc).root();
             assert!(doc_html.AppendChild(NodeCast::from_mut_ref(&mut *doc_body)).is_ok());
         }
 

@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-use dom::bindings::codegen::BindingDeclarations::HTMLAppletElementBinding;
+use dom::bindings::codegen::Bindings::HTMLAppletElementBinding;
 use dom::bindings::codegen::InheritTypes::HTMLAppletElementDerived;
 use dom::bindings::js::{JSRef, Temporary};
 use dom::bindings::error::ErrorResult;
@@ -64,7 +64,7 @@ pub trait HTMLAppletElementMethods {
 
 impl<'a> HTMLAppletElementMethods for JSRef<'a, HTMLAppletElement> {
     fn Align(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetAlign(&mut self, _align: DOMString) -> ErrorResult {
@@ -72,7 +72,7 @@ impl<'a> HTMLAppletElementMethods for JSRef<'a, HTMLAppletElement> {
     }
 
     fn Alt(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetAlt(&self, _alt: DOMString) -> ErrorResult {
@@ -80,7 +80,7 @@ impl<'a> HTMLAppletElementMethods for JSRef<'a, HTMLAppletElement> {
     }
 
     fn Archive(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetArchive(&self, _archive: DOMString) -> ErrorResult {
@@ -88,7 +88,7 @@ impl<'a> HTMLAppletElementMethods for JSRef<'a, HTMLAppletElement> {
     }
 
     fn Code(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetCode(&self, _code: DOMString) -> ErrorResult {
@@ -96,7 +96,7 @@ impl<'a> HTMLAppletElementMethods for JSRef<'a, HTMLAppletElement> {
     }
 
     fn CodeBase(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetCodeBase(&self, _code_base: DOMString) -> ErrorResult {
@@ -104,7 +104,7 @@ impl<'a> HTMLAppletElementMethods for JSRef<'a, HTMLAppletElement> {
     }
 
     fn Height(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetHeight(&self, _height: DOMString) -> ErrorResult {
@@ -120,7 +120,7 @@ impl<'a> HTMLAppletElementMethods for JSRef<'a, HTMLAppletElement> {
     }
 
     fn Name(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetName(&mut self, _name: DOMString) -> ErrorResult {
@@ -128,7 +128,7 @@ impl<'a> HTMLAppletElementMethods for JSRef<'a, HTMLAppletElement> {
     }
 
     fn Object(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetObject(&mut self, _object: DOMString) -> ErrorResult {
@@ -144,7 +144,7 @@ impl<'a> HTMLAppletElementMethods for JSRef<'a, HTMLAppletElement> {
     }
 
     fn Width(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetWidth(&mut self, _width: DOMString) -> ErrorResult {

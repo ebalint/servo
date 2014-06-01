@@ -13,7 +13,7 @@ use text::glyph::{CharIndex, GlyphStore};
 /// A text run.
 #[deriving(Clone)]
 pub struct TextRun {
-    pub text: Arc<~str>,
+    pub text: Arc<String>,
     pub font_descriptor: FontDescriptor,
     pub font_metrics: FontMetrics,
     pub font_style: FontStyle,
@@ -97,8 +97,8 @@ impl<'a> Iterator<Range<CharIndex>> for LineIterator<'a> {
 }
 
 impl<'a> TextRun {
-    pub fn new(font: &mut Font, text: ~str, decoration: text_decoration::T) -> TextRun {
-        let glyphs = TextRun::break_and_shape(font, text);
+    pub fn new(font: &mut Font, text: String, decoration: text_decoration::T) -> TextRun {
+        let glyphs = TextRun::break_and_shape(font, text.as_slice());
 
         let run = TextRun {
             text: Arc::new(text),

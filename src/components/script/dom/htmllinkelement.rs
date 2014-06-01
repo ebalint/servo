@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-use dom::bindings::codegen::BindingDeclarations::HTMLLinkElementBinding;
+use dom::bindings::codegen::Bindings::HTMLLinkElementBinding;
 use dom::bindings::codegen::InheritTypes::HTMLLinkElementDerived;
 use dom::bindings::js::{JSRef, Temporary};
 use dom::bindings::error::ErrorResult;
@@ -69,7 +69,7 @@ impl<'a> HTMLLinkElementMethods for JSRef<'a, HTMLLinkElement> {
     }
 
     fn Href(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetHref(&mut self, _href: DOMString) -> ErrorResult {
@@ -77,7 +77,7 @@ impl<'a> HTMLLinkElementMethods for JSRef<'a, HTMLLinkElement> {
     }
 
     fn CrossOrigin(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetCrossOrigin(&mut self, _cross_origin: DOMString) -> ErrorResult {
@@ -85,7 +85,7 @@ impl<'a> HTMLLinkElementMethods for JSRef<'a, HTMLLinkElement> {
     }
 
     fn Rel(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetRel(&mut self, _rel: DOMString) -> ErrorResult {
@@ -93,7 +93,7 @@ impl<'a> HTMLLinkElementMethods for JSRef<'a, HTMLLinkElement> {
     }
 
     fn Media(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetMedia(&mut self, _media: DOMString) -> ErrorResult {
@@ -101,7 +101,7 @@ impl<'a> HTMLLinkElementMethods for JSRef<'a, HTMLLinkElement> {
     }
 
     fn Hreflang(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetHreflang(&mut self, _href: DOMString) -> ErrorResult {
@@ -109,7 +109,7 @@ impl<'a> HTMLLinkElementMethods for JSRef<'a, HTMLLinkElement> {
     }
 
     fn Type(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetType(&mut self, _type: DOMString) -> ErrorResult {
@@ -117,7 +117,7 @@ impl<'a> HTMLLinkElementMethods for JSRef<'a, HTMLLinkElement> {
     }
 
     fn Charset(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetCharset(&mut self, _charset: DOMString) -> ErrorResult {
@@ -125,7 +125,7 @@ impl<'a> HTMLLinkElementMethods for JSRef<'a, HTMLLinkElement> {
     }
 
     fn Rev(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetRev(&mut self, _rev: DOMString) -> ErrorResult {
@@ -133,7 +133,7 @@ impl<'a> HTMLLinkElementMethods for JSRef<'a, HTMLLinkElement> {
     }
 
     fn Target(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetTarget(&mut self, _target: DOMString) -> ErrorResult {

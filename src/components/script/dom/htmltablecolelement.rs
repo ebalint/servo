@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-use dom::bindings::codegen::BindingDeclarations::HTMLTableColElementBinding;
+use dom::bindings::codegen::Bindings::HTMLTableColElementBinding;
 use dom::bindings::codegen::InheritTypes::HTMLTableColElementDerived;
 use dom::bindings::js::{JSRef, Temporary};
 use dom::bindings::error::ErrorResult;
@@ -62,7 +62,7 @@ impl<'a> HTMLTableColElementMethods for JSRef<'a, HTMLTableColElement> {
     }
 
     fn Align(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetAlign(&mut self, _align: DOMString) -> ErrorResult {
@@ -70,7 +70,7 @@ impl<'a> HTMLTableColElementMethods for JSRef<'a, HTMLTableColElement> {
     }
 
     fn Ch(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetCh(&mut self, _ch: DOMString) -> ErrorResult {
@@ -78,7 +78,7 @@ impl<'a> HTMLTableColElementMethods for JSRef<'a, HTMLTableColElement> {
     }
 
     fn ChOff(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetChOff(&mut self, _ch_off: DOMString) -> ErrorResult {
@@ -86,7 +86,7 @@ impl<'a> HTMLTableColElementMethods for JSRef<'a, HTMLTableColElement> {
     }
 
     fn VAlign(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetVAlign(&mut self, _v_align: DOMString) -> ErrorResult {
@@ -94,7 +94,7 @@ impl<'a> HTMLTableColElementMethods for JSRef<'a, HTMLTableColElement> {
     }
 
     fn Width(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetWidth(&mut self, _width: DOMString) -> ErrorResult {

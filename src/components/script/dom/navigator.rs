@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-use dom::bindings::codegen::BindingDeclarations::NavigatorBinding;
+use dom::bindings::codegen::Bindings::NavigatorBinding;
 use dom::bindings::js::{JSRef, Temporary};
 use dom::bindings::utils::{Reflectable, Reflector, reflect_dom_object};
 use dom::bindings::error::Fallible;
@@ -49,23 +49,23 @@ pub trait NavigatorMethods {
 
 impl<'a> NavigatorMethods for JSRef<'a, Navigator> {
     fn DoNotTrack(&self) -> DOMString {
-        "unspecified".to_owned()
+        "unspecified".to_string()
     }
 
     fn Vendor(&self) -> DOMString {
-        "".to_owned() // Like Gecko
+        "".to_string() // Like Gecko
     }
 
     fn VendorSub(&self) -> DOMString {
-        "".to_owned() // Like Gecko
+        "".to_string() // Like Gecko
     }
 
     fn Product(&self) -> DOMString {
-        "Gecko".to_owned()
+        "Gecko".to_string()
     }
 
     fn ProductSub(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn CookieEnabled(&self) -> bool {
@@ -73,7 +73,7 @@ impl<'a> NavigatorMethods for JSRef<'a, Navigator> {
     }
 
     fn GetBuildID(&self) -> Fallible<DOMString> {
-        Ok("".to_owned())
+        Ok("".to_string())
     }
 
     fn JavaEnabled(&self) -> Fallible<bool> {
@@ -85,23 +85,23 @@ impl<'a> NavigatorMethods for JSRef<'a, Navigator> {
     }
 
     fn AppName(&self) -> DOMString {
-        "Netscape".to_owned() // Like Gecko/Webkit
+        "Netscape".to_string() // Like Gecko/Webkit
     }
 
     fn GetAppCodeName(&self) -> Fallible<DOMString> {
-        Ok("Mozilla".to_owned()) // Like Gecko/Webkit
+        Ok("Mozilla".to_string()) // Like Gecko/Webkit
     }
 
     fn GetAppVersion(&self) -> Fallible<DOMString> {
-        Ok("".to_owned())
+        Ok("".to_string())
     }
 
     fn GetPlatform(&self) -> Fallible<DOMString> {
-        Ok("".to_owned())
+        Ok("".to_string())
     }
 
     fn GetUserAgent(&self) -> Fallible<DOMString> {
-        Ok("".to_owned())
+        Ok("".to_string())
     }
 
     fn GetLanguage(&self) -> Option<DOMString> {

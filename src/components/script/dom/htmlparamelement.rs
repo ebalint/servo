@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-use dom::bindings::codegen::BindingDeclarations::HTMLParamElementBinding;
+use dom::bindings::codegen::Bindings::HTMLParamElementBinding;
 use dom::bindings::codegen::InheritTypes::HTMLParamElementDerived;
 use dom::bindings::js::{JSRef, Temporary};
 use dom::bindings::error::ErrorResult;
@@ -50,7 +50,7 @@ pub trait HTMLParamElementMethods {
 
 impl<'a> HTMLParamElementMethods for JSRef<'a, HTMLParamElement> {
     fn Name(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetName(&mut self, _name: DOMString) -> ErrorResult {
@@ -58,7 +58,7 @@ impl<'a> HTMLParamElementMethods for JSRef<'a, HTMLParamElement> {
     }
 
     fn Value(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetValue(&mut self, _value: DOMString) -> ErrorResult {
@@ -66,7 +66,7 @@ impl<'a> HTMLParamElementMethods for JSRef<'a, HTMLParamElement> {
     }
 
     fn Type(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetType(&mut self, _type: DOMString) -> ErrorResult {
@@ -74,7 +74,7 @@ impl<'a> HTMLParamElementMethods for JSRef<'a, HTMLParamElement> {
     }
 
     fn ValueType(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetValueType(&mut self, _value_type: DOMString) -> ErrorResult {

@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-use dom::bindings::codegen::BindingDeclarations::HTMLSelectElementBinding;
+use dom::bindings::codegen::Bindings::HTMLSelectElementBinding;
 use dom::bindings::codegen::InheritTypes::HTMLSelectElementDerived;
 use dom::bindings::codegen::UnionTypes::{HTMLElementOrLong, HTMLOptionElementOrHTMLOptGroupElement};
 use dom::bindings::js::{JSRef, Temporary};
@@ -108,7 +108,7 @@ impl<'a> HTMLSelectElementMethods for JSRef<'a, HTMLSelectElement> {
     }
 
     fn Name(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetName(&mut self, _name: DOMString) -> ErrorResult {
@@ -132,7 +132,7 @@ impl<'a> HTMLSelectElementMethods for JSRef<'a, HTMLSelectElement> {
     }
 
     fn Type(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn Length(&self) -> u32 {
@@ -174,7 +174,7 @@ impl<'a> HTMLSelectElementMethods for JSRef<'a, HTMLSelectElement> {
     }
 
     fn Value(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetValue(&mut self, _value: DOMString) {
@@ -193,7 +193,7 @@ impl<'a> HTMLSelectElementMethods for JSRef<'a, HTMLSelectElement> {
     }
 
     fn ValidationMessage(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetValidationMessage(&mut self, _message: DOMString) -> ErrorResult {

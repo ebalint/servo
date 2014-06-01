@@ -54,7 +54,7 @@ use gfx::display_list::DisplayList;
 use gfx::render_task::RenderLayer;
 use servo_msg::compositor_msg::LayerId;
 use servo_util::geometry::Au;
-use std::cast;
+use std::mem;
 use std::fmt;
 use std::iter::Zip;
 use std::num::Zero;
@@ -265,7 +265,7 @@ pub trait Flow: fmt::Show + ToStr {
     /// Returns a layer ID for the given fragment.
     fn layer_id(&self, fragment_id: uint) -> LayerId {
         unsafe {
-            let pointer: uint = cast::transmute(self);
+            let pointer: uint = mem::transmute(self);
             LayerId(pointer, fragment_id)
         }
     }
@@ -276,7 +276,7 @@ pub trait Flow: fmt::Show + ToStr {
 #[inline(always)]
 pub fn base<'a>(this: &'a Flow) -> &'a BaseFlow {
     unsafe {
-        let (_, ptr): (uint, &BaseFlow) = cast::transmute(this);
+        let (_, ptr): (uint, &BaseFlow) = mem::transmute(this);
         ptr
     }
 }
@@ -289,7 +289,7 @@ pub fn imm_child_iter<'a>(flow: &'a Flow) -> FlowListIterator<'a> {
 #[inline(always)]
 pub fn mut_base<'a>(this: &'a mut Flow) -> &'a mut BaseFlow {
     unsafe {
-        let (_, ptr): (uint, &mut BaseFlow) = cast::transmute(this);
+        let (_, ptr): (uint, &mut BaseFlow) = mem::transmute(this);
         ptr
     }
 }
@@ -908,7 +908,7 @@ impl<'a> ImmutableFlowUtils for &'a Flow {
 
     /// Dumps the flow tree for debugging, with a prefix to indicate that we're at the given level.
     fn dump_with_level(self, level: uint) {
-        let mut indent = StrBuf::new();
+        let mut indent = String::new();
         for _ in range(0, level) {
             indent.push_str("| ")
         }

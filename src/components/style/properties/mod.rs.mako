@@ -242,7 +242,7 @@ pub mod longhands {
                               -> Option<specified::Length> {
         match component_value {
             &Ident(ref value) => {
-                match value.to_owned().to_ascii_lower().as_slice() {
+                match value.as_slice().to_ascii_lower().as_slice() {
                     "thin" => Some(specified::Length::from_px(1.)),
                     "medium" => Some(specified::Length::from_px(3.)),
                     "thick" => Some(specified::Length::from_px(5.)),
@@ -385,7 +385,7 @@ pub mod longhands {
                 &Dimension(ref value, ref unit) if value.value >= 0.
                 => specified::Length::parse_dimension(value.value, unit.as_slice())
                     .map(SpecifiedLength),
-                &Ident(ref value) if value.to_owned().eq_ignore_ascii_case("normal")
+                &Ident(ref value) if value.as_slice().eq_ignore_ascii_case("normal")
                 => Some(SpecifiedNormal),
                 _ => None,
             }
@@ -466,7 +466,7 @@ pub mod longhands {
                                     -> Option<SpecifiedValue> {
             match input {
                 &Ident(ref value) => {
-                    match value.to_owned().to_ascii_lower().as_slice() {
+                    match value.as_slice().to_ascii_lower().as_slice() {
                         % for keyword in vertical_align_keywords:
                         "${keyword}" => Some(Specified_${to_rust_ident(keyword)}),
                         % endfor
@@ -525,7 +525,7 @@ pub mod longhands {
             pub mod computed_value {
                 #[deriving(Eq, Clone)]
                 pub enum Content {
-                    StringContent(~str),
+                    StringContent(String),
                 }
                 #[allow(non_camel_case_types)]
                 #[deriving(Eq, Clone)]
@@ -543,7 +543,7 @@ pub mod longhands {
             pub fn parse(input: &[ComponentValue], _base_url: &Url) -> Option<SpecifiedValue> {
                 match one_component_value(input) {
                     Some(&Ident(ref keyword)) => {
-                        match keyword.to_owned().to_ascii_lower().as_slice() {
+                        match keyword.as_slice().to_ascii_lower().as_slice() {
                             "normal" => return Some(normal),
                             "none" => return Some(none),
                             _ => ()
@@ -555,7 +555,7 @@ pub mod longhands {
                 for component_value in input.skip_whitespace() {
                     match component_value {
                         &String(ref value)
-                        => content.push(StringContent(value.to_owned())),
+                        => content.push(StringContent(value.clone())),
                         _ => return None  // invalid/unsupported value
                     }
                 }
@@ -587,7 +587,7 @@ pub mod longhands {
                         let image_url = parse_url(url.as_slice(), Some(base_url.clone()));
                         Some(Some(image_url))
                     },
-                    &ast::Ident(ref value) if value.to_owned().eq_ignore_ascii_case("none") => Some(None),
+                    &ast::Ident(ref value) if value.as_slice().eq_ignore_ascii_case("none") => Some(None),
                     _ => None,
                 }
             }
@@ -699,7 +699,7 @@ pub mod longhands {
         pub mod computed_value {
             #[deriving(Eq, Clone)]
             pub enum FontFamily {
-                FamilyName(~str),
+                FamilyName(String),
                 // Generic
 //                Serif,
 //                SansSerif,
@@ -710,7 +710,7 @@ pub mod longhands {
             pub type T = Vec<FontFamily>;
         }
         pub type SpecifiedValue = computed_value::T;
-        #[inline] pub fn get_initial_value() -> computed_value::T { vec!(FamilyName("serif".to_owned())) }
+        #[inline] pub fn get_initial_value() -> computed_value::T { vec!(FamilyName("serif".to_string())) }
         /// <familiy-name>#
         /// <familiy-name> = <string> | [ <ident>+ ]
         /// TODO: <generic-familiy>
@@ -734,9 +734,9 @@ pub mod longhands {
             'outer: loop {
                 match iter.next() {
                     // TODO: avoid copying strings?
-                    Some(&String(ref value)) => add!(FamilyName(value.to_owned()), break 'outer),
+                    Some(&String(ref value)) => add!(FamilyName(value.clone()), break 'outer),
                     Some(&Ident(ref value)) => {
-                        match value.to_owned().to_ascii_lower().as_slice() {
+                        match value.as_slice().to_ascii_lower().as_slice() {
 //                            "serif" => add!(Serif, break 'outer),
 //                            "sans-serif" => add!(SansSerif, break 'outer),
 //                            "cursive" => add!(Cursive, break 'outer),
@@ -786,7 +786,7 @@ pub mod longhands {
                                     -> Option<SpecifiedValue> {
             match input {
                 &Ident(ref value) => {
-                    match value.to_owned().to_ascii_lower().as_slice() {
+                    match value.as_slice().to_ascii_lower().as_slice() {
                         "bold" => Some(SpecifiedWeight700),
                         "normal" => Some(SpecifiedWeight400),
                         "bolder" => Some(Bolder),
@@ -1263,7 +1263,7 @@ pub mod shorthands {
             // font-style, font-weight and font-variant.
             // Leaves the values to None, 'normal' is the initial value for each of them.
             match get_ident_lower(component_value) {
-                Some(ref ident) if ident.to_owned().eq_ignore_ascii_case("normal") => {
+                Some(ref ident) if ident.as_slice().eq_ignore_ascii_case("normal") => {
                     nb_normals += 1;
                     continue;
                 }
@@ -1404,7 +1404,7 @@ pub fn parse_property_declaration_list<I: Iterator<Node>>(input: I, base_url: &U
     for item in items.move_iter().rev() {
         match item {
             DeclAtRule(rule) => log_css_error(
-                rule.location, format!("Unsupported at-rule in declaration list: @{:s}", rule.name)),
+                rule.location, format!("Unsupported at-rule in declaration list: @{:s}", rule.name).as_slice()),
             Declaration(Declaration{ location: l, name: n, value: v, important: i}) => {
                 // TODO: only keep the last valid declaration for a given name.
                 let (list, seen) = if i {
@@ -1412,11 +1412,11 @@ pub fn parse_property_declaration_list<I: Iterator<Node>>(input: I, base_url: &U
                 } else {
                     (&mut normal_declarations, &mut normal_seen)
                 };
-                match PropertyDeclaration::parse(n.to_owned(), v.as_slice(), list, base_url, seen) {
+                match PropertyDeclaration::parse(n.as_slice(), v.as_slice(), list, base_url, seen) {
                     UnknownProperty => log_css_error(l, format!(
-                        "Unsupported property: {}:{}", n, v.iter().to_css())),
+                        "Unsupported property: {}:{}", n, v.iter().to_css()).as_slice()),
                     InvalidValue => log_css_error(l, format!(
-                        "Invalid value: {}:{}", n, v.iter().to_css())),
+                        "Invalid value: {}:{}", n, v.iter().to_css()).as_slice()),
                     ValidOrIgnoredDeclaration => (),
                 }
             }
@@ -1476,7 +1476,7 @@ impl PropertyDeclaration {
                  base_url: &Url,
                  seen: &mut PropertyBitField) -> PropertyDeclarationParseResult {
         // FIXME: local variable to work around Rust #10683
-        let name_lower = name.to_owned().to_ascii_lower();
+        let name_lower = name.as_slice().to_ascii_lower();
         match name_lower.as_slice() {
             % for property in LONGHANDS:
                 % if property.derived_from is None:

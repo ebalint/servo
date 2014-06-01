@@ -4,7 +4,7 @@
 
 use dom::bindings::utils::{Reflectable, Reflector, reflect_dom_object};
 use dom::bindings::error::{Fallible};
-use dom::bindings::codegen::BindingDeclarations::FormDataBinding;
+use dom::bindings::codegen::Bindings::FormDataBinding;
 use dom::bindings::js::{JS, JSRef, Temporary, OptionalUnrootable};
 use dom::blob::Blob;
 use dom::htmlformelement::HTMLFormElement;
@@ -55,7 +55,7 @@ impl<'a> FormDataMethods for JSRef<'a, FormData> {
     fn Append(&mut self, name: DOMString, value: &JSRef<Blob>, filename: Option<DOMString>) {
         let blob = BlobData {
             blob: value.unrooted(),
-            name: filename.unwrap_or("default".to_owned())
+            name: filename.unwrap_or("default".to_string())
         };
         self.data.insert(name.clone(), blob);
     }

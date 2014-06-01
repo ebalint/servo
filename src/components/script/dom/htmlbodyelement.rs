@@ -2,8 +2,8 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-use dom::bindings::codegen::BindingDeclarations::HTMLBodyElementBinding;
-use dom::bindings::codegen::EventHandlerBinding::EventHandlerNonNull;
+use dom::bindings::codegen::Bindings::HTMLBodyElementBinding;
+use dom::bindings::codegen::Bindings::EventHandlerBinding::EventHandlerNonNull;
 use dom::bindings::codegen::InheritTypes::{HTMLBodyElementDerived, HTMLElementCast};
 use dom::bindings::codegen::InheritTypes::EventTargetCast;
 use dom::bindings::error::ErrorResult;
@@ -61,7 +61,7 @@ pub trait HTMLBodyElementMethods {
 
 impl<'a> HTMLBodyElementMethods for JSRef<'a, HTMLBodyElement> {
     fn Text(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetText(&mut self, _text: DOMString) -> ErrorResult {
@@ -69,7 +69,7 @@ impl<'a> HTMLBodyElementMethods for JSRef<'a, HTMLBodyElement> {
     }
 
     fn Link(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetLink(&self, _link: DOMString) -> ErrorResult {
@@ -77,7 +77,7 @@ impl<'a> HTMLBodyElementMethods for JSRef<'a, HTMLBodyElement> {
     }
 
     fn VLink(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetVLink(&self, _v_link: DOMString) -> ErrorResult {
@@ -85,7 +85,7 @@ impl<'a> HTMLBodyElementMethods for JSRef<'a, HTMLBodyElement> {
     }
 
     fn ALink(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetALink(&self, _a_link: DOMString) -> ErrorResult {
@@ -93,7 +93,7 @@ impl<'a> HTMLBodyElementMethods for JSRef<'a, HTMLBodyElement> {
     }
 
     fn BgColor(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetBgColor(&self, _bg_color: DOMString) -> ErrorResult {
@@ -101,7 +101,7 @@ impl<'a> HTMLBodyElementMethods for JSRef<'a, HTMLBodyElement> {
     }
 
     fn Background(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetBackground(&self, _background: DOMString) -> ErrorResult {
@@ -131,7 +131,7 @@ impl<'a> VirtualMethods for JSRef<'a, HTMLBodyElement> {
             _ => (),
         }
 
-        if name.starts_with("on") {
+        if name.as_slice().starts_with("on") {
             static forwarded_events: &'static [&'static str] =
                 &["onfocus", "onload", "onscroll", "onafterprint", "onbeforeprint",
                   "onbeforeunload", "onhashchange", "onlanguagechange", "onmessage",
@@ -148,7 +148,7 @@ impl<'a> VirtualMethods for JSRef<'a, HTMLBodyElement> {
                     EventTargetCast::from_mut_ref(self)
                 };
             evtarget.set_event_handler_uncompiled(cx, url, reflector,
-                                                  name.slice_from(2).to_owned(),
+                                                  name.as_slice().slice_from(2),
                                                   value);
         }
     }

@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-use dom::bindings::codegen::BindingDeclarations::HTMLSourceElementBinding;
+use dom::bindings::codegen::Bindings::HTMLSourceElementBinding;
 use dom::bindings::codegen::InheritTypes::HTMLSourceElementDerived;
 use dom::bindings::js::{JSRef, Temporary};
 use dom::bindings::error::ErrorResult;
@@ -48,7 +48,7 @@ pub trait HTMLSourceElementMethods {
 
 impl<'a> HTMLSourceElementMethods for JSRef<'a, HTMLSourceElement> {
     fn Src(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetSrc(&mut self, _src: DOMString) -> ErrorResult {
@@ -56,7 +56,7 @@ impl<'a> HTMLSourceElementMethods for JSRef<'a, HTMLSourceElement> {
     }
 
     fn Type(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetType(&mut self, _type: DOMString) -> ErrorResult {
@@ -64,7 +64,7 @@ impl<'a> HTMLSourceElementMethods for JSRef<'a, HTMLSourceElement> {
     }
 
     fn Media(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetMedia(&mut self, _media: DOMString) -> ErrorResult {

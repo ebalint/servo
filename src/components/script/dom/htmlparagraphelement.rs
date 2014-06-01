@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-use dom::bindings::codegen::BindingDeclarations::HTMLParagraphElementBinding;
+use dom::bindings::codegen::Bindings::HTMLParagraphElementBinding;
 use dom::bindings::codegen::InheritTypes::HTMLParagraphElementDerived;
 use dom::bindings::js::{JSRef, Temporary};
 use dom::bindings::error::ErrorResult;
@@ -44,7 +44,7 @@ pub trait HTMLParagraphElementMethods {
 
 impl<'a> HTMLParagraphElementMethods for JSRef<'a, HTMLParagraphElement> {
     fn Align(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetAlign(&mut self, _align: DOMString) -> ErrorResult {

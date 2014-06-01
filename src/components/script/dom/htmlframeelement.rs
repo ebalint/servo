@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-use dom::bindings::codegen::BindingDeclarations::HTMLFrameElementBinding;
+use dom::bindings::codegen::Bindings::HTMLFrameElementBinding;
 use dom::bindings::codegen::InheritTypes::HTMLFrameElementDerived;
 use dom::bindings::js::{JSRef, Temporary};
 use dom::bindings::error::ErrorResult;
@@ -61,7 +61,7 @@ pub trait HTMLFrameElementMethods {
 
 impl<'a> HTMLFrameElementMethods for JSRef<'a, HTMLFrameElement> {
     fn Name(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetName(&mut self, _name: DOMString) -> ErrorResult {
@@ -69,7 +69,7 @@ impl<'a> HTMLFrameElementMethods for JSRef<'a, HTMLFrameElement> {
     }
 
     fn Scrolling(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetScrolling(&mut self, _scrolling: DOMString) -> ErrorResult {
@@ -77,7 +77,7 @@ impl<'a> HTMLFrameElementMethods for JSRef<'a, HTMLFrameElement> {
     }
 
     fn Src(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetSrc(&mut self, _src: DOMString) -> ErrorResult {
@@ -85,7 +85,7 @@ impl<'a> HTMLFrameElementMethods for JSRef<'a, HTMLFrameElement> {
     }
 
     fn FrameBorder(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetFrameBorder(&mut self, _frameborder: DOMString) -> ErrorResult {
@@ -93,7 +93,7 @@ impl<'a> HTMLFrameElementMethods for JSRef<'a, HTMLFrameElement> {
     }
 
     fn LongDesc(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetLongDesc(&mut self, _longdesc: DOMString) -> ErrorResult {
@@ -117,7 +117,7 @@ impl<'a> HTMLFrameElementMethods for JSRef<'a, HTMLFrameElement> {
     }
 
     fn MarginHeight(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetMarginHeight(&mut self, _height: DOMString) -> ErrorResult {
@@ -125,7 +125,7 @@ impl<'a> HTMLFrameElementMethods for JSRef<'a, HTMLFrameElement> {
     }
 
     fn MarginWidth(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetMarginWidth(&mut self, _height: DOMString) -> ErrorResult {

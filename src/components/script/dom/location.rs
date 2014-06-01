@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-use dom::bindings::codegen::BindingDeclarations::LocationBinding;
+use dom::bindings::codegen::Bindings::LocationBinding;
 use dom::bindings::js::{JSRef, Temporary};
 use dom::bindings::utils::{Reflectable, Reflector, reflect_dom_object};
 use dom::bindings::error::Fallible;
@@ -85,11 +85,11 @@ impl<'a> LocationMethods for JSRef<'a, Location> {
     }
 
     fn Origin(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn Protocol(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetProtocol(&self, _protocol: DOMString) {
@@ -97,7 +97,7 @@ impl<'a> LocationMethods for JSRef<'a, Location> {
     }
 
     fn Username(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetUsername(&self, _username: DOMString) {
@@ -105,7 +105,7 @@ impl<'a> LocationMethods for JSRef<'a, Location> {
     }
 
     fn Password(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetPassword(&self, _password: DOMString) {
@@ -113,7 +113,7 @@ impl<'a> LocationMethods for JSRef<'a, Location> {
     }
 
     fn Host(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetHost(&self, _host: DOMString) {
@@ -121,7 +121,7 @@ impl<'a> LocationMethods for JSRef<'a, Location> {
     }
 
     fn Hostname(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetHostname(&self, _hostname: DOMString) {
@@ -129,7 +129,7 @@ impl<'a> LocationMethods for JSRef<'a, Location> {
     }
 
     fn Port(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetPort(&self, _port: DOMString) {
@@ -137,7 +137,7 @@ impl<'a> LocationMethods for JSRef<'a, Location> {
     }
 
     fn Pathname(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetPathname(&self, _pathname: DOMString) {
@@ -145,7 +145,7 @@ impl<'a> LocationMethods for JSRef<'a, Location> {
     }
 
     fn Search(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetSearch(&self, _search: DOMString) {
@@ -153,7 +153,7 @@ impl<'a> LocationMethods for JSRef<'a, Location> {
     }
 
     fn Hash(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetHash(&self, _hash: DOMString) {

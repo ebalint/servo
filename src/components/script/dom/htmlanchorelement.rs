@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-use dom::bindings::codegen::BindingDeclarations::HTMLAnchorElementBinding;
+use dom::bindings::codegen::Bindings::HTMLAnchorElementBinding;
 use dom::bindings::codegen::InheritTypes::HTMLAnchorElementDerived;
 use dom::bindings::codegen::InheritTypes::{ElementCast, HTMLElementCast, NodeCast};
 use dom::bindings::js::{JSRef, Temporary, OptionalRootable};
@@ -73,7 +73,7 @@ pub trait HTMLAnchorElementMethods {
 
 impl<'a> HTMLAnchorElementMethods for JSRef<'a, HTMLAnchorElement> {
     fn Href(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetHref(&mut self, _href: DOMString) -> ErrorResult {
@@ -81,7 +81,7 @@ impl<'a> HTMLAnchorElementMethods for JSRef<'a, HTMLAnchorElement> {
     }
 
     fn Target(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetTarget(&self, _target: DOMString) -> ErrorResult {
@@ -89,7 +89,7 @@ impl<'a> HTMLAnchorElementMethods for JSRef<'a, HTMLAnchorElement> {
     }
 
     fn Download(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetDownload(&self, _download: DOMString) -> ErrorResult {
@@ -97,7 +97,7 @@ impl<'a> HTMLAnchorElementMethods for JSRef<'a, HTMLAnchorElement> {
     }
 
     fn Ping(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetPing(&self, _ping: DOMString) -> ErrorResult {
@@ -105,7 +105,7 @@ impl<'a> HTMLAnchorElementMethods for JSRef<'a, HTMLAnchorElement> {
     }
 
     fn Rel(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetRel(&self, _rel: DOMString) -> ErrorResult {
@@ -113,7 +113,7 @@ impl<'a> HTMLAnchorElementMethods for JSRef<'a, HTMLAnchorElement> {
     }
 
     fn Hreflang(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetHreflang(&self, _href_lang: DOMString) -> ErrorResult {
@@ -121,7 +121,7 @@ impl<'a> HTMLAnchorElementMethods for JSRef<'a, HTMLAnchorElement> {
     }
 
     fn Type(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetType(&mut self, _type: DOMString) -> ErrorResult {
@@ -129,7 +129,7 @@ impl<'a> HTMLAnchorElementMethods for JSRef<'a, HTMLAnchorElement> {
     }
 
     fn Text(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetText(&mut self, _text: DOMString) -> ErrorResult {
@@ -137,7 +137,7 @@ impl<'a> HTMLAnchorElementMethods for JSRef<'a, HTMLAnchorElement> {
     }
 
     fn Coords(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetCoords(&mut self, _coords: DOMString) -> ErrorResult {
@@ -145,7 +145,7 @@ impl<'a> HTMLAnchorElementMethods for JSRef<'a, HTMLAnchorElement> {
     }
 
     fn Charset(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetCharset(&mut self, _charset: DOMString) -> ErrorResult {
@@ -153,7 +153,7 @@ impl<'a> HTMLAnchorElementMethods for JSRef<'a, HTMLAnchorElement> {
     }
 
     fn Name(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetName(&mut self, _name: DOMString) -> ErrorResult {
@@ -161,7 +161,7 @@ impl<'a> HTMLAnchorElementMethods for JSRef<'a, HTMLAnchorElement> {
     }
 
     fn Rev(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetRev(&mut self, _rev: DOMString) -> ErrorResult {
@@ -169,7 +169,7 @@ impl<'a> HTMLAnchorElementMethods for JSRef<'a, HTMLAnchorElement> {
     }
 
     fn Shape(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetShape(&mut self, _shape: DOMString) -> ErrorResult {
@@ -183,7 +183,7 @@ trait PrivateHTMLAnchorElementHelpers {
 
 impl<'a> PrivateHTMLAnchorElementHelpers for JSRef<'a, HTMLAnchorElement> {
     fn handle_event_impl(&self, event: &JSRef<Event>) {
-        if "click" == event.Type() && !event.DefaultPrevented() {
+        if "click" == event.Type().as_slice() && !event.DefaultPrevented() {
             let element: &JSRef<Element> = ElementCast::from_ref(self);
             let attr = element.get_attribute(Null, "href").root();
             match attr {

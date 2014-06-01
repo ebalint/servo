@@ -79,8 +79,8 @@ impl Flow for TableColGroupFlow {
 impl fmt::Show for TableColGroupFlow {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         match self.box_ {
-            Some(ref rb) => write!(f.buf, "TableColGroupFlow: {}", rb),
-            None => write!(f.buf, "TableColGroupFlow"),
+            Some(ref rb) => write!(f, "TableColGroupFlow: {}", rb),
+            None => write!(f, "TableColGroupFlow"),
         }
     }
 }

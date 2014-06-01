@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-use dom::bindings::codegen::BindingDeclarations::HTMLTitleElementBinding;
+use dom::bindings::codegen::Bindings::HTMLTitleElementBinding;
 use dom::bindings::codegen::InheritTypes::HTMLTitleElementDerived;
 use dom::bindings::js::{JSRef, Temporary};
 use dom::bindings::error::ErrorResult;
@@ -44,7 +44,7 @@ pub trait HTMLTitleElementMethods {
 
 impl<'a> HTMLTitleElementMethods for JSRef<'a, HTMLTitleElement> {
     fn Text(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetText(&mut self, _text: DOMString) -> ErrorResult {

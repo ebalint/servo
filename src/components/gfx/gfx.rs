@@ -13,6 +13,7 @@
 #[phase(syntax, link)]
 extern crate log;
 
+extern crate debug;
 extern crate azure;
 extern crate collections;
 extern crate geom;

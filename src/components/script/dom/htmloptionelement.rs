@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-use dom::bindings::codegen::BindingDeclarations::HTMLOptionElementBinding;
+use dom::bindings::codegen::Bindings::HTMLOptionElementBinding;
 use dom::bindings::codegen::InheritTypes::HTMLOptionElementDerived;
 use dom::bindings::js::{JSRef, Temporary};
 use dom::bindings::error::ErrorResult;
@@ -69,7 +69,7 @@ impl<'a> HTMLOptionElementMethods for JSRef<'a, HTMLOptionElement> {
     }
 
     fn Label(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetLabel(&mut self, _label: DOMString) -> ErrorResult {
@@ -93,7 +93,7 @@ impl<'a> HTMLOptionElementMethods for JSRef<'a, HTMLOptionElement> {
     }
 
     fn Value(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetValue(&mut self, _value: DOMString) -> ErrorResult {
@@ -101,7 +101,7 @@ impl<'a> HTMLOptionElementMethods for JSRef<'a, HTMLOptionElement> {
     }
 
     fn Text(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetText(&mut self, _text: DOMString) -> ErrorResult {

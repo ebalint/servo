@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-use dom::bindings::codegen::BindingDeclarations::HTMLAreaElementBinding;
+use dom::bindings::codegen::Bindings::HTMLAreaElementBinding;
 use dom::bindings::codegen::InheritTypes::HTMLAreaElementDerived;
 use dom::bindings::js::{JSRef, Temporary};
 use dom::bindings::error::ErrorResult;
@@ -58,7 +58,7 @@ pub trait HTMLAreaElementMethods {
 
 impl<'a> HTMLAreaElementMethods for JSRef<'a, HTMLAreaElement> {
     fn Alt(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetAlt(&self, _alt: DOMString) -> ErrorResult {
@@ -66,7 +66,7 @@ impl<'a> HTMLAreaElementMethods for JSRef<'a, HTMLAreaElement> {
     }
 
     fn Coords(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetCoords(&self, _coords: DOMString) -> ErrorResult {
@@ -74,7 +74,7 @@ impl<'a> HTMLAreaElementMethods for JSRef<'a, HTMLAreaElement> {
     }
 
     fn Shape(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetShape(&self, _shape: DOMString) -> ErrorResult {
@@ -82,7 +82,7 @@ impl<'a> HTMLAreaElementMethods for JSRef<'a, HTMLAreaElement> {
     }
 
     fn Href(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetHref(&self, _href: DOMString) -> ErrorResult {
@@ -90,7 +90,7 @@ impl<'a> HTMLAreaElementMethods for JSRef<'a, HTMLAreaElement> {
     }
 
     fn Target(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetTarget(&self, _target: DOMString) -> ErrorResult {
@@ -98,7 +98,7 @@ impl<'a> HTMLAreaElementMethods for JSRef<'a, HTMLAreaElement> {
     }
 
     fn Download(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetDownload(&self, _download: DOMString) -> ErrorResult {
@@ -106,7 +106,7 @@ impl<'a> HTMLAreaElementMethods for JSRef<'a, HTMLAreaElement> {
     }
 
     fn Ping(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetPing(&self, _ping: DOMString) -> ErrorResult {

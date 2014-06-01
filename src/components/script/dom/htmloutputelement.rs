@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-use dom::bindings::codegen::BindingDeclarations::HTMLOutputElementBinding;
+use dom::bindings::codegen::Bindings::HTMLOutputElementBinding;
 use dom::bindings::codegen::InheritTypes::HTMLOutputElementDerived;
 use dom::bindings::js::{JSRef, Temporary};
 use dom::bindings::error::ErrorResult;
@@ -63,7 +63,7 @@ impl<'a> HTMLOutputElementMethods for JSRef<'a, HTMLOutputElement> {
     }
 
     fn Name(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetName(&mut self, _name: DOMString) -> ErrorResult {
@@ -71,11 +71,11 @@ impl<'a> HTMLOutputElementMethods for JSRef<'a, HTMLOutputElement> {
     }
 
     fn Type(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn DefaultValue(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetDefaultValue(&mut self, _value: DOMString) -> ErrorResult {
@@ -83,7 +83,7 @@ impl<'a> HTMLOutputElementMethods for JSRef<'a, HTMLOutputElement> {
     }
 
     fn Value(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetValue(&mut self, _value: DOMString) -> ErrorResult {
@@ -103,7 +103,7 @@ impl<'a> HTMLOutputElementMethods for JSRef<'a, HTMLOutputElement> {
     }
 
     fn ValidationMessage(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetValidationMessage(&mut self, _message: DOMString) -> ErrorResult {

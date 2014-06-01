@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-use dom::bindings::codegen::BindingDeclarations::HTMLIFrameElementBinding;
+use dom::bindings::codegen::Bindings::HTMLIFrameElementBinding;
 use dom::bindings::codegen::InheritTypes::{ElementCast, HTMLIFrameElementDerived, HTMLElementCast};
 use dom::bindings::error::ErrorResult;
 use dom::bindings::js::{JSRef, Temporary, OptionalRootable};
@@ -123,7 +123,7 @@ pub trait HTMLIFrameElementMethods {
 
 impl<'a> HTMLIFrameElementMethods for JSRef<'a, HTMLIFrameElement> {
     fn Src(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetSrc(&mut self, _src: DOMString) -> ErrorResult {
@@ -131,7 +131,7 @@ impl<'a> HTMLIFrameElementMethods for JSRef<'a, HTMLIFrameElement> {
     }
 
     fn Srcdoc(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetSrcdoc(&mut self, _srcdoc: DOMString) -> ErrorResult {
@@ -139,7 +139,7 @@ impl<'a> HTMLIFrameElementMethods for JSRef<'a, HTMLIFrameElement> {
     }
 
     fn Name(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetName(&mut self, _name: DOMString) -> ErrorResult {
@@ -165,7 +165,7 @@ impl<'a> HTMLIFrameElementMethods for JSRef<'a, HTMLIFrameElement> {
     }
 
     fn Width(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetWidth(&mut self, _width: DOMString) -> ErrorResult {
@@ -173,7 +173,7 @@ impl<'a> HTMLIFrameElementMethods for JSRef<'a, HTMLIFrameElement> {
     }
 
     fn Height(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetHeight(&mut self, _height: DOMString) -> ErrorResult {
@@ -200,7 +200,7 @@ impl<'a> HTMLIFrameElementMethods for JSRef<'a, HTMLIFrameElement> {
     }
 
     fn Align(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetAlign(&mut self, _align: DOMString) -> ErrorResult {
@@ -208,7 +208,7 @@ impl<'a> HTMLIFrameElementMethods for JSRef<'a, HTMLIFrameElement> {
     }
 
     fn Scrolling(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetScrolling(&mut self, _scrolling: DOMString) -> ErrorResult {
@@ -216,7 +216,7 @@ impl<'a> HTMLIFrameElementMethods for JSRef<'a, HTMLIFrameElement> {
     }
 
     fn FrameBorder(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetFrameBorder(&mut self, _frameborder: DOMString) -> ErrorResult {
@@ -224,7 +224,7 @@ impl<'a> HTMLIFrameElementMethods for JSRef<'a, HTMLIFrameElement> {
     }
 
     fn LongDesc(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetLongDesc(&mut self, _longdesc: DOMString) -> ErrorResult {
@@ -232,7 +232,7 @@ impl<'a> HTMLIFrameElementMethods for JSRef<'a, HTMLIFrameElement> {
     }
 
     fn MarginHeight(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetMarginHeight(&mut self, _marginheight: DOMString) -> ErrorResult {
@@ -240,7 +240,7 @@ impl<'a> HTMLIFrameElementMethods for JSRef<'a, HTMLIFrameElement> {
     }
 
     fn MarginWidth(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetMarginWidth(&mut self, _marginwidth: DOMString) -> ErrorResult {
@@ -264,9 +264,9 @@ impl<'a> VirtualMethods for JSRef<'a, HTMLIFrameElement> {
             _ => (),
         }
 
-        if "sandbox" == name {
+        if "sandbox" == name.as_slice() {
             let mut modes = AllowNothing as u8;
-            for word in value.split(' ') {
+            for word in value.as_slice().split(' ') {
                 modes |= match word.to_ascii_lower().as_slice() {
                     "allow-same-origin" => AllowSameOrigin,
                     "allow-forms" => AllowForms,
@@ -287,7 +287,7 @@ impl<'a> VirtualMethods for JSRef<'a, HTMLIFrameElement> {
             _ => (),
         }
 
-        if "sandbox" == name {
+        if "sandbox" == name.as_slice() {
             self.deref_mut().sandbox = None;
         }
     }

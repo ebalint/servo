@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-use dom::bindings::codegen::BindingDeclarations::HTMLModElementBinding;
+use dom::bindings::codegen::Bindings::HTMLModElementBinding;
 use dom::bindings::codegen::InheritTypes::HTMLModElementDerived;
 use dom::bindings::js::{JSRef, Temporary};
 use dom::bindings::error::ErrorResult;
@@ -46,7 +46,7 @@ pub trait HTMLModElementMethods {
 
 impl<'a> HTMLModElementMethods for JSRef<'a, HTMLModElement> {
     fn Cite(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetCite(&mut self, _cite: DOMString) -> ErrorResult {
@@ -54,7 +54,7 @@ impl<'a> HTMLModElementMethods for JSRef<'a, HTMLModElement> {
     }
 
     fn DateTime(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetDateTime(&mut self, _datetime: DOMString) -> ErrorResult {

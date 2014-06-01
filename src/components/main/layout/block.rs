@@ -1700,11 +1700,11 @@ impl Flow for BlockFlow {
 impl fmt::Show for BlockFlow {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         if self.is_float() {
-            write!(f.buf, "FloatFlow: {}", self.box_)
+            write!(f, "FloatFlow: {}", self.box_)
         } else if self.is_root() {
-            write!(f.buf, "RootFlow: {}", self.box_)
+            write!(f, "RootFlow: {}", self.box_)
         } else {
-            write!(f.buf, "BlockFlow: {}", self.box_)
+            write!(f, "BlockFlow: {}", self.box_)
         }
     }
 }

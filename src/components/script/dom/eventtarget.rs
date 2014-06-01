@@ -3,8 +3,8 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 use dom::bindings::callback::CallbackContainer;
-use dom::bindings::codegen::BindingDeclarations::EventListenerBinding::EventListener;
-use dom::bindings::codegen::EventHandlerBinding::EventHandlerNonNull;
+use dom::bindings::codegen::Bindings::EventListenerBinding::EventListener;
+use dom::bindings::codegen::Bindings::EventHandlerBinding::EventHandlerNonNull;
 use dom::bindings::error::{Fallible, InvalidState};
 use dom::bindings::js::JSRef;
 use dom::bindings::utils::{Reflectable, Reflector};
@@ -192,11 +192,11 @@ impl<'a> EventTargetHelpers for JSRef<'a, EventTarget> {
     {
         let event_listener = listener.map(|listener|
                                           EventListener::new(listener.callback()));
-        self.set_inline_event_listener(ty.to_owned(), event_listener);
+        self.set_inline_event_listener(ty.to_string(), event_listener);
     }
 
     fn get_event_handler_common<T: CallbackContainer>(&self, ty: &str) -> Option<T> {
-        let listener = self.get_inline_event_listener(ty.to_owned());
+        let listener = self.get_inline_event_listener(ty.to_string());
         listener.map(|listener| CallbackContainer::new(listener.parent.callback()))
     }
 }

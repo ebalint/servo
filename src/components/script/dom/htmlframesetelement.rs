@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-use dom::bindings::codegen::BindingDeclarations::HTMLFrameSetElementBinding;
+use dom::bindings::codegen::Bindings::HTMLFrameSetElementBinding;
 use dom::bindings::codegen::InheritTypes::HTMLFrameSetElementDerived;
 use dom::bindings::js::{JSRef, Temporary};
 use dom::bindings::error::ErrorResult;
@@ -46,7 +46,7 @@ pub trait HTMLFrameSetElementMethods {
 
 impl<'a> HTMLFrameSetElementMethods for JSRef<'a, HTMLFrameSetElement> {
     fn Cols(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetCols(&mut self, _cols: DOMString) -> ErrorResult {
@@ -54,7 +54,7 @@ impl<'a> HTMLFrameSetElementMethods for JSRef<'a, HTMLFrameSetElement> {
     }
 
     fn Rows(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetRows(&mut self, _rows: DOMString) -> ErrorResult {

@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-use dom::bindings::codegen::BindingDeclarations::HTMLHtmlElementBinding;
+use dom::bindings::codegen::Bindings::HTMLHtmlElementBinding;
 use dom::bindings::codegen::InheritTypes::HTMLHtmlElementDerived;
 use dom::bindings::js::{JSRef, Temporary};
 use dom::bindings::error::ErrorResult;
@@ -44,7 +44,7 @@ pub trait HTMLHtmlElementMethods {
 
 impl<'a> HTMLHtmlElementMethods for JSRef<'a, HTMLHtmlElement> {
     fn Version(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetVersion(&mut self, _version: DOMString) -> ErrorResult {

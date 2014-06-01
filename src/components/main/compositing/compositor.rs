@@ -608,7 +608,7 @@ impl IOCompositor {
         }
     }
 
-    fn on_load_url_window_event(&mut self, url_string: ~str) {
+    fn on_load_url_window_event(&mut self, url_string: String) {
         debug!("osmain: loading URL `{:s}`", url_string);
         self.load_complete = false;
         let root_pipeline_id = match self.compositor_layer {
@@ -616,7 +616,7 @@ impl IOCompositor {
             None => fail!("Compositor: Received LoadUrlWindowEvent without initialized compositor layers"),
         };
 
-        let msg = LoadUrlMsg(root_pipeline_id, url::parse_url(url_string, None));
+        let msg = LoadUrlMsg(root_pipeline_id, url::parse_url(url_string.as_slice(), None));
         let ConstellationChan(ref chan) = self.constellation_chan;
         chan.send(msg);
     }
@@ -734,7 +734,7 @@ impl IOCompositor {
         if self.load_complete && self.ready_state == FinishedLoading
             && self.opts.output_file.is_some() {
             let (width, height) = (self.window_size.width as uint, self.window_size.height as uint);
-            let path = from_str::<Path>(*self.opts.output_file.get_ref()).unwrap();
+            let path = from_str::<Path>(self.opts.output_file.get_ref().as_slice()).unwrap();
             let mut pixels = gl2::read_pixels(0, 0,
                                               width as gl2::GLsizei,
                                               height as gl2::GLsizei,

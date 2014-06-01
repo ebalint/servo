@@ -16,6 +16,7 @@
 #[phase(syntax, link)]
 extern crate log;
 
+extern crate debug;
 extern crate collections;
 extern crate geom;
 extern crate hubbub;
@@ -48,12 +49,11 @@ pub mod dom {
         pub mod str;
         pub mod trace;
         pub mod codegen {
-            pub mod EventHandlerBinding;
+            pub mod Bindings;
             pub mod InterfaceTypes;
             pub mod InheritTypes;
             pub mod PrototypeList;
             pub mod RegisterBindings;
-            pub mod BindingDeclarations;
             pub mod UnionTypes;
         }
     }

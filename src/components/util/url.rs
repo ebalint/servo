@@ -17,21 +17,21 @@ Create a URL object from a string. Does various helpful browsery things like
 
 */
 // TODO: about:failure->
-pub fn try_parse_url(str_url: &str, base_url: Option<std_url::Url>) -> Result<std_url::Url, ~str> {
-    let str_url = str_url.trim_chars(&[' ', '\t', '\n', '\r', '\x0C']).to_owned();
-    let schm = std_url::get_scheme(str_url);
+pub fn try_parse_url(str_url: &str, base_url: Option<std_url::Url>) -> Result<std_url::Url, String> {
+    let str_url = str_url.trim_chars(&[' ', '\t', '\n', '\r', '\x0C']).to_string();
+    let schm = std_url::get_scheme(str_url.as_slice());
     let str_url = match schm {
         Err(_) => {
             if base_url.is_none() {
                 // Assume we've been given a file path. If it's absolute just return
                 // it, otherwise make it absolute with the cwd.
-                if str_url.starts_with("/") {
-                    "file://".to_owned() + str_url
+                if str_url.as_slice().starts_with("/") {
+                    format!("file://{}", str_url)
                 } else {
                     let mut path = os::getcwd();
                     path.push(str_url);
                     // FIXME (#1094): not the right way to transform a path
-                    "file://".to_owned() + path.display().to_str()
+                    format!("file://{}", path.display().to_str())
                 }
             } else {
                 let base_url = base_url.unwrap();
@@ -41,17 +41,17 @@ pub fn try_parse_url(str_url: &str, base_url: Option<std_url::Url>) -> Result<st
                 new_url.query = vec!();
                 new_url.fragment = None;
 
-                if str_url.starts_with("//") {
-                    new_url.scheme + ":" + str_url
-                } else if base_url.path.is_empty() || str_url.starts_with("/") {
-                    new_url.path = "/".to_owned();
-                    new_url.to_str() + str_url.trim_left_chars('/')
-                } else if str_url.starts_with("#") {
-                    new_url.to_str() + str_url
+                if str_url.as_slice().starts_with("//") {
+                    format!("{}:{}", new_url.scheme, str_url)
+                } else if base_url.path.is_empty() || str_url.as_slice().starts_with("/") {
+                    new_url.path = "/".to_string();
+                    format!("{}{}", new_url, str_url.as_slice().trim_left_chars('/'))
+                } else if str_url.as_slice().starts_with("#") {
+                    format!("{}{}", new_url, str_url)
                 } else { // relative path
-                    let base_path = base_url.path.trim_right_chars(|c: char| c != '/');
-                    new_url.path = base_path.to_owned();
-                    new_url.to_str() + str_url
+                    let base_path = base_url.path.as_slice().trim_right_chars(|c: char| c != '/');
+                    new_url.path = base_path.to_string();
+                    format!("{}{}", new_url, str_url)
                 }
             }
         },
@@ -66,24 +66,24 @@ pub fn try_parse_url(str_url: &str, base_url: Option<std_url::Url>) -> Result<st
                             let mut path = os::self_exe_path().expect("can't get exe path");
                             path.push("../src/test/html/failure.html");
                             // FIXME (#1094): not the right way to transform a path
-                            "file://".to_owned() + path.display().to_str()
+                            format!("file://{}", path.display().to_str())
                         }
                         // TODO: handle the rest of the about: pages
-                        _ => str_url.to_owned()
+                        _ => str_url.to_string()
                     }
                 },
                 "data" => {
                     // Drop whitespace within data: URLs, e.g. newlines within a base64
                     // src="..." block.  Whitespace intended as content should be
                     // %-encoded or base64'd.
-                    str_url.chars().filter(|&c| !c.is_whitespace()).collect()
+                    str_url.as_slice().chars().filter(|&c| !c.is_whitespace()).collect()
                 },
-                _ => str_url.to_owned()
+                _ => str_url.to_string()
             }
         }
     };
 
-    std_url::from_str(str_url)
+    std_url::from_str(str_url.as_slice())
 }
 
 pub fn parse_url(str_url: &str, base_url: Option<std_url::Url>) -> std_url::Url {

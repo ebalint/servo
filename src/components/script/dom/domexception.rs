@@ -2,8 +2,8 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-use dom::bindings::codegen::BindingDeclarations::DOMExceptionBinding;
-use dom::bindings::codegen::BindingDeclarations::DOMExceptionBinding::DOMExceptionConstants;
+use dom::bindings::codegen::Bindings::DOMExceptionBinding;
+use dom::bindings::codegen::Bindings::DOMExceptionBinding::DOMExceptionConstants;
 use dom::bindings::js::{JSRef, Temporary};
 use dom::bindings::utils::{Reflectable, Reflector, reflect_dom_object};
 use dom::window::Window;
@@ -88,27 +88,27 @@ impl<'a> DOMExceptionMethods for JSRef<'a, DOMException> {
     // http://dom.spec.whatwg.org/#error-names-0
     fn Message(&self) -> DOMString {
         match self.code {
-            IndexSizeError => "The index is not in the allowed range.".to_owned(),
-            HierarchyRequestError => "The operation would yield an incorrect node tree.".to_owned(),
-            WrongDocumentError => "The object is in the wrong document.".to_owned(),
-            InvalidCharacterError => "The string contains invalid characters.".to_owned(),
-            NoModificationAllowedError => "The object can not be modified.".to_owned(),
-            NotFoundError => "The object can not be found here.".to_owned(),
-            NotSupportedError => "The operation is not supported.".to_owned(),
-            InvalidStateError => "The object is in an invalid state.".to_owned(),
-            SyntaxError => "The string did not match the expected pattern.".to_owned(),
-            InvalidModificationError => "The object can not be modified in this way.".to_owned(),
-            NamespaceError => "The operation is not allowed by Namespaces in XML.".to_owned(),
-            InvalidAccessError => "The object does not support the operation or argument.".to_owned(),
-            SecurityError => "The operation is insecure.".to_owned(),
-            NetworkError => "A network error occurred.".to_owned(),
-            AbortError => "The operation was aborted.".to_owned(),
-            URLMismatchError => "The given URL does not match another URL.".to_owned(),
-            QuotaExceededError => "The quota has been exceeded.".to_owned(),
-            TimeoutError => "The operation timed out.".to_owned(),
-            InvalidNodeTypeError => "The supplied node is incorrect or has an incorrect ancestor for this operation.".to_owned(),
-            DataCloneError => "The object can not be cloned.".to_owned(),
-            EncodingError => "The encoding operation (either encoded or decoding) failed.".to_owned()
+            IndexSizeError => "The index is not in the allowed range.".to_string(),
+            HierarchyRequestError => "The operation would yield an incorrect node tree.".to_string(),
+            WrongDocumentError => "The object is in the wrong document.".to_string(),
+            InvalidCharacterError => "The string contains invalid characters.".to_string(),
+            NoModificationAllowedError => "The object can not be modified.".to_string(),
+            NotFoundError => "The object can not be found here.".to_string(),
+            NotSupportedError => "The operation is not supported.".to_string(),
+            InvalidStateError => "The object is in an invalid state.".to_string(),
+            SyntaxError => "The string did not match the expected pattern.".to_string(),
+            InvalidModificationError => "The object can not be modified in this way.".to_string(),
+            NamespaceError => "The operation is not allowed by Namespaces in XML.".to_string(),
+            InvalidAccessError => "The object does not support the operation or argument.".to_string(),
+            SecurityError => "The operation is insecure.".to_string(),
+            NetworkError => "A network error occurred.".to_string(),
+            AbortError => "The operation was aborted.".to_string(),
+            URLMismatchError => "The given URL does not match another URL.".to_string(),
+            QuotaExceededError => "The quota has been exceeded.".to_string(),
+            TimeoutError => "The operation timed out.".to_string(),
+            InvalidNodeTypeError => "The supplied node is incorrect or has an incorrect ancestor for this operation.".to_string(),
+            DataCloneError => "The object can not be cloned.".to_string(),
+            EncodingError => "The encoding operation (either encoded or decoding) failed.".to_string()
         }
     }
 }

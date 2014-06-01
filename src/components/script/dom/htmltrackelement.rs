@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-use dom::bindings::codegen::BindingDeclarations::HTMLTrackElementBinding;
+use dom::bindings::codegen::Bindings::HTMLTrackElementBinding;
 use dom::bindings::codegen::InheritTypes::HTMLTrackElementDerived;
 use dom::bindings::js::{JSRef, Temporary};
 use dom::bindings::error::ErrorResult;
@@ -53,7 +53,7 @@ pub trait HTMLTrackElementMethods {
 
 impl<'a> HTMLTrackElementMethods for JSRef<'a, HTMLTrackElement> {
     fn Kind(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetKind(&mut self, _kind: DOMString) -> ErrorResult {
@@ -61,7 +61,7 @@ impl<'a> HTMLTrackElementMethods for JSRef<'a, HTMLTrackElement> {
     }
 
     fn Src(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetSrc(&mut self, _src: DOMString) -> ErrorResult {
@@ -69,7 +69,7 @@ impl<'a> HTMLTrackElementMethods for JSRef<'a, HTMLTrackElement> {
     }
 
     fn Srclang(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetSrclang(&mut self, _srclang: DOMString) -> ErrorResult {
@@ -77,7 +77,7 @@ impl<'a> HTMLTrackElementMethods for JSRef<'a, HTMLTrackElement> {
     }
 
     fn Label(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetLabel(&mut self, _label: DOMString) -> ErrorResult {

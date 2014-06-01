@@ -38,7 +38,6 @@ use servo_util::range::*;
 use servo_util::namespace;
 use servo_util::smallvec::SmallVec;
 use servo_util::str::is_whitespace;
-use std::cast;
 use std::fmt;
 use std::from_str::FromStr;
 use std::iter::AdditiveIterator;
@@ -263,7 +262,7 @@ impl SplitInfo {
 #[deriving(Clone)]
 pub struct UnscannedTextBoxInfo {
     /// The text inside the box.
-    pub text: ~str,
+    pub text: String,
 }
 
 impl UnscannedTextBoxInfo {
@@ -277,7 +276,7 @@ impl UnscannedTextBoxInfo {
 
     /// Creates a new instance of `UnscannedTextBoxInfo` from the given text.
     #[inline]
-    pub fn from_text(text: ~str) -> UnscannedTextBoxInfo {
+    pub fn from_text(text: String) -> UnscannedTextBoxInfo {
         UnscannedTextBoxInfo {
             text: text,
         }
@@ -383,7 +382,7 @@ impl Box {
     /// layouts or box manipulations.
     pub fn debug_id(&self) -> uint {
         unsafe {
-            cast::transmute(self)
+            mem::transmute(self)
         }
     }
 
@@ -1249,7 +1248,7 @@ impl Box {
     /// Returns true if this box is an unscanned text box that consists entirely of whitespace.
     pub fn is_whitespace_only(&self) -> bool {
         match self.specific {
-            UnscannedTextBox(ref text_box_info) => is_whitespace(text_box_info.text),
+            UnscannedTextBox(ref text_box_info) => is_whitespace(text_box_info.text.as_slice()),
             _ => false,
         }
     }
@@ -1411,12 +1410,12 @@ impl Box {
         if value.is_zero() {
             Ok(())
         } else {
-            write!(f.buf, "{}{},{},{},{}",
-                name,
-                value.top,
-                value.right,
-                value.bottom,
-                value.left)
+            write!(f, "{}{},{},{},{}",
+                   name,
+                   value.top,
+                   value.right,
+                   value.bottom,
+                   value.left)
         }
     }
 
@@ -1447,7 +1446,7 @@ impl Box {
 impl fmt::Show for Box {
     /// Outputs a debugging string describing this box.
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        try!(write!(f.buf, "({} ",
+        try!(write!(f, "({} ",
             match self.specific {
                 GenericBox => "GenericBox",
                 IframeBox(_) => "IframeBox",
@@ -1461,9 +1460,9 @@ impl fmt::Show for Box {
                 UnscannedTextBox(_) => "UnscannedTextBox",
         }));
         try!(self.side_offsets_debug_fmt("bp", self.border_padding, f));
-        try!(write!(f.buf, " "));
+        try!(write!(f, " "));
         try!(self.side_offsets_debug_fmt("m", self.margin, f));
-        write!(f.buf, ")")
+        write!(f, ")")
     }
 }
 

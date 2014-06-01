@@ -2,8 +2,8 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-use dom::bindings::codegen::BindingDeclarations::DOMParserBinding;
-use dom::bindings::codegen::BindingDeclarations::DOMParserBinding::SupportedTypeValues::{Text_html, Text_xml};
+use dom::bindings::codegen::Bindings::DOMParserBinding;
+use dom::bindings::codegen::Bindings::DOMParserBinding::SupportedTypeValues::{Text_html, Text_xml};
 use dom::bindings::js::{JS, JSRef, Temporary};
 use dom::bindings::utils::{Reflector, Reflectable, reflect_dom_object};
 use dom::bindings::error::{Fallible, FailureUnknown};
@@ -48,10 +48,10 @@ impl<'a> DOMParserMethods for JSRef<'a, DOMParser> {
         let owner = self.owner.root();
         match ty {
             Text_html => {
-                Ok(Document::new(&owner.root_ref(), None, HTMLDocument, Some("text/html".to_owned())))
+                Ok(Document::new(&owner.root_ref(), None, HTMLDocument, Some("text/html".to_string())))
             }
             Text_xml => {
-                Ok(Document::new(&owner.root_ref(), None, NonHTMLDocument, Some("text/xml".to_owned())))
+                Ok(Document::new(&owner.root_ref(), None, NonHTMLDocument, Some("text/xml".to_string())))
             }
             _ => {
                 Err(FailureUnknown)

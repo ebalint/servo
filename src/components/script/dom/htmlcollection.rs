@@ -3,7 +3,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 use dom::bindings::codegen::InheritTypes::{ElementCast, NodeCast};
-use dom::bindings::codegen::BindingDeclarations::HTMLCollectionBinding;
+use dom::bindings::codegen::Bindings::HTMLCollectionBinding;
 use dom::bindings::js::{JS, JSRef, Temporary};
 use dom::bindings::utils::{Reflectable, Reflector, reflect_dom_object};
 use dom::element::{Element, AttributeHandlers};
@@ -99,11 +99,11 @@ impl HTMLCollection {
         }
         impl CollectionFilter for ClassNameFilter {
             fn filter(&self, elem: &JSRef<Element>, _root: &JSRef<Node>) -> bool {
-                self.classes.iter().all(|class| elem.has_class(*class))
+                self.classes.iter().all(|class| elem.has_class(class.as_slice()))
             }
         }
         let filter = ClassNameFilter {
-            classes: split_html_space_chars(classes).map(|class| class.into_owned()).collect()
+            classes: split_html_space_chars(classes.as_slice()).map(|class| class.into_owned()).collect()
         };
         HTMLCollection::create(window, root, box filter)
     }

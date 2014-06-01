@@ -47,7 +47,7 @@ macro_rules! lazy_init(
                         static mut s: *$T = 0 as *$T;
                         static mut ONCE: ::sync::one::Once = ::sync::one::ONCE_INIT;
                         ONCE.doit(|| {
-                            s = ::std::cast::transmute::<Box<$T>, *$T>(box () ($e));
+                            s = ::std::mem::transmute::<Box<$T>, *$T>(box () ($e));
                         });
                         &*s
                     }

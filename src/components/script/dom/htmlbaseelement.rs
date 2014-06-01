@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-use dom::bindings::codegen::BindingDeclarations::HTMLBaseElementBinding;
+use dom::bindings::codegen::Bindings::HTMLBaseElementBinding;
 use dom::bindings::codegen::InheritTypes::HTMLBaseElementDerived;
 use dom::bindings::error::ErrorResult;
 use dom::bindings::js::{JSRef, Temporary};
@@ -46,7 +46,7 @@ pub trait HTMLBaseElementMethods {
 
 impl<'a> HTMLBaseElementMethods for JSRef<'a, HTMLBaseElement> {
     fn Href(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetHref(&self, _href: DOMString) -> ErrorResult {
@@ -54,7 +54,7 @@ impl<'a> HTMLBaseElementMethods for JSRef<'a, HTMLBaseElement> {
     }
 
     fn Target(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetTarget(&self, _target: DOMString) -> ErrorResult {

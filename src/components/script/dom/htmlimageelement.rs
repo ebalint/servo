@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-use dom::bindings::codegen::BindingDeclarations::HTMLImageElementBinding;
+use dom::bindings::codegen::Bindings::HTMLImageElementBinding;
 use dom::bindings::codegen::InheritTypes::{NodeCast, ElementCast, HTMLElementCast, HTMLImageElementDerived};
 use dom::bindings::error::ErrorResult;
 use dom::bindings::js::{JS, JSRef, Temporary};
@@ -50,7 +50,7 @@ impl<'a> PrivateHTMLImageElementHelpers for JSRef<'a, HTMLImageElement> {
                 *self.image = None;
             }
             Some(src) => {
-                let img_url = parse_url(src, url);
+                let img_url = parse_url(src.as_slice(), url);
                 *self.image = Some(img_url.clone());
 
                 // inform the image cache to load this, but don't store a
@@ -142,7 +142,7 @@ impl<'a> HTMLImageElementMethods for JSRef<'a, HTMLImageElement> {
     }
 
     fn CrossOrigin(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetCrossOrigin(&mut self, _cross_origin: DOMString) -> ErrorResult {
@@ -161,7 +161,7 @@ impl<'a> HTMLImageElementMethods for JSRef<'a, HTMLImageElement> {
 
     fn IsMap(&self) -> bool {
         let element: &JSRef<Element> = ElementCast::from_ref(self);
-        from_str::<bool>(element.get_string_attribute("hspace")).unwrap()
+        from_str::<bool>(element.get_string_attribute("hspace").as_slice()).unwrap()
     }
 
     fn SetIsMap(&mut self, is_map: bool) {
@@ -225,7 +225,7 @@ impl<'a> HTMLImageElementMethods for JSRef<'a, HTMLImageElement> {
 
     fn Hspace(&self) -> u32 {
         let element: &JSRef<Element> = ElementCast::from_ref(self);
-        from_str::<u32>(element.get_string_attribute("hspace")).unwrap()
+        from_str::<u32>(element.get_string_attribute("hspace").as_slice()).unwrap()
     }
 
     fn SetHspace(&mut self, hspace: u32) {
@@ -235,7 +235,7 @@ impl<'a> HTMLImageElementMethods for JSRef<'a, HTMLImageElement> {
 
     fn Vspace(&self) -> u32 {
         let element: &JSRef<Element> = ElementCast::from_ref(self);
-        from_str::<u32>(element.get_string_attribute("vspace")).unwrap()
+        from_str::<u32>(element.get_string_attribute("vspace").as_slice()).unwrap()
     }
 
     fn SetVspace(&mut self, vspace: u32) {
@@ -276,7 +276,7 @@ impl<'a> VirtualMethods for JSRef<'a, HTMLImageElement> {
             _ => (),
         }
 
-        if "src" == name {
+        if "src" == name.as_slice() {
             let window = window_from_node(self).root();
             let url = Some(window.deref().get_url());
             self.update_image(Some(value), url);
@@ -289,7 +289,7 @@ impl<'a> VirtualMethods for JSRef<'a, HTMLImageElement> {
             _ => (),
         }
 
-        if "src" == name {
+        if "src" == name.as_slice() {
             self.update_image(None, None);
         }
     }

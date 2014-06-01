@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-use dom::bindings::codegen::BindingDeclarations::TextBinding;
+use dom::bindings::codegen::Bindings::TextBinding;
 use dom::bindings::codegen::InheritTypes::TextDerived;
 use dom::bindings::js::{JSRef, Temporary};
 use dom::bindings::error::Fallible;
@@ -54,6 +54,6 @@ impl<'a> TextMethods for JSRef<'a, Text> {
     }
 
     fn GetWholeText(&self) -> Fallible<DOMString> {
-        Ok("".to_owned())
+        Ok("".to_string())
     }
 }

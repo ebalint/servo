@@ -5,7 +5,6 @@
 //! A variant of `DList` specialized to store `Flow`s without an extra
 //! indirection.
 
-use std::cast;
 use std::mem;
 use std::ptr;
 
@@ -55,7 +54,7 @@ impl Rawlink {
 
     /// Like Option::Some for Rawlink
     pub fn some(n: &mut Flow) -> Rawlink {
-        unsafe { cast::transmute(n) }
+        unsafe { mem::transmute(n) }
     }
 
     /// Convert the `Rawlink` into an Option value
@@ -63,7 +62,7 @@ impl Rawlink {
         if self.obj.is_null() {
             None
         } else {
-            let me: &Flow = unsafe { cast::transmute_copy(self) };
+            let me: &Flow = unsafe { mem::transmute_copy(self) };
             Some(me)
         }
     }
@@ -72,7 +71,7 @@ impl Rawlink {
         if self.obj.is_null() {
             None
         } else {
-            let me: &mut Flow = unsafe { cast::transmute_copy(self) };
+            let me: &mut Flow = unsafe { mem::transmute_copy(self) };
             Some(me)
         }
     }
@@ -83,7 +82,7 @@ impl Rawlink {
 
     unsafe fn get<'a>(&'a mut self) -> &'a mut Flow {
         assert!(self.obj.is_not_null());
-        cast::transmute_copy(self)
+        mem::transmute_copy(self)
     }
 }
 

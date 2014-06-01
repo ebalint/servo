@@ -30,7 +30,7 @@ pub struct FontContextInfo {
 }
 
 pub trait FontContextHandleMethods {
-    fn create_font_from_identifier(&self, ~str, UsedFontStyle) -> Result<FontHandle, ()>;
+    fn create_font_from_identifier(&self, String, UsedFontStyle) -> Result<FontHandle, ()>;
 }
 
 pub struct FontContext {
@@ -39,7 +39,7 @@ pub struct FontContext {
     pub group_cache: LRUCache<SpecifiedFontStyle, Rc<RefCell<FontGroup>>>,
     pub handle: FontContextHandle,
     pub backend: BackendType,
-    pub generic_fonts: HashMap<~str,~str>,
+    pub generic_fonts: HashMap<String,String>,
     pub profiler_chan: ProfilerChan,
 }
 
@@ -107,7 +107,7 @@ impl FontContext {
         }
     }
 
-    fn transform_family(&self, family: &~str) -> ~str {
+    fn transform_family(&self, family: &String) -> String {
         debug!("(transform family) searching for `{:s}`", family.as_slice());
         match self.generic_fonts.find(family) {
             None => family.to_owned(),

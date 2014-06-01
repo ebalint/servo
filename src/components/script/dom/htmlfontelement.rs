@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-use dom::bindings::codegen::BindingDeclarations::HTMLFontElementBinding;
+use dom::bindings::codegen::Bindings::HTMLFontElementBinding;
 use dom::bindings::codegen::InheritTypes::HTMLFontElementDerived;
 use dom::bindings::js::{JSRef, Temporary};
 use dom::bindings::error::ErrorResult;
@@ -48,7 +48,7 @@ pub trait HTMLFontElementMethods {
 
 impl<'a> HTMLFontElementMethods for JSRef<'a, HTMLFontElement> {
     fn Color(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetColor(&mut self, _color: DOMString) -> ErrorResult {
@@ -56,7 +56,7 @@ impl<'a> HTMLFontElementMethods for JSRef<'a, HTMLFontElement> {
     }
 
     fn Face(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetFace(&mut self, _face: DOMString) -> ErrorResult {
@@ -64,7 +64,7 @@ impl<'a> HTMLFontElementMethods for JSRef<'a, HTMLFontElement> {
     }
 
     fn Size(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetSize(&mut self, _size: DOMString) -> ErrorResult {

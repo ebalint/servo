@@ -2,8 +2,8 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-use dom::bindings::codegen::BindingDeclarations::HTMLElementBinding;
-use dom::bindings::codegen::EventHandlerBinding::EventHandlerNonNull;
+use dom::bindings::codegen::Bindings::HTMLElementBinding;
+use dom::bindings::codegen::Bindings::EventHandlerBinding::EventHandlerNonNull;
 use dom::bindings::codegen::InheritTypes::{ElementCast, HTMLFrameSetElementDerived};
 use dom::bindings::codegen::InheritTypes::{HTMLElementDerived, HTMLBodyElementDerived};
 use dom::bindings::codegen::InheritTypes::EventTargetCast;
@@ -96,21 +96,21 @@ pub trait HTMLElementMethods {
 
 impl<'a> HTMLElementMethods for JSRef<'a, HTMLElement> {
     fn Title(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetTitle(&mut self, _title: DOMString) {
     }
 
     fn Lang(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetLang(&mut self, _lang: DOMString) {
     }
 
     fn Dir(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetDir(&mut self, _dir: DOMString) -> ErrorResult {
@@ -153,7 +153,7 @@ impl<'a> HTMLElementMethods for JSRef<'a, HTMLElement> {
     }
 
     fn AccessKey(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetAccessKey(&self, _key: DOMString) -> ErrorResult {
@@ -161,7 +161,7 @@ impl<'a> HTMLElementMethods for JSRef<'a, HTMLElement> {
     }
 
     fn AccessKeyLabel(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn Draggable(&self) -> bool {
@@ -173,7 +173,7 @@ impl<'a> HTMLElementMethods for JSRef<'a, HTMLElement> {
     }
 
     fn ContentEditable(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetContentEditable(&mut self, _val: DOMString) -> ErrorResult {

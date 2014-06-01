@@ -2,8 +2,8 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-use dom::bindings::codegen::BindingDeclarations::WindowBinding;
-use dom::bindings::codegen::EventHandlerBinding::{OnErrorEventHandlerNonNull, EventHandlerNonNull};
+use dom::bindings::codegen::Bindings::WindowBinding;
+use dom::bindings::codegen::Bindings::EventHandlerBinding::{OnErrorEventHandlerNonNull, EventHandlerNonNull};
 use dom::bindings::codegen::InheritTypes::EventTargetCast;
 use dom::bindings::js::{JS, JSRef, Temporary, OptionalSettable};
 use dom::bindings::trace::{Traceable, Untraceable};
@@ -169,14 +169,14 @@ impl<'a> WindowMethods for JSRef<'a, Window> {
     }
 
     fn Name(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetName(&self, _name: DOMString) {
     }
 
     fn Status(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetStatus(&self, _status: DOMString) {
@@ -361,9 +361,9 @@ impl<'a> WindowHelpers for JSRef<'a, Window> {
     fn load_url(&self, href: DOMString) {
         let base_url = Some(self.page().get_url());
         debug!("current page url is {:?}", base_url);
-        let url = parse_url(href, base_url);
+        let url = parse_url(href.as_slice(), base_url);
         let ScriptChan(ref script_chan) = self.script_chan;
-        if href.starts_with("#") {
+        if href.as_slice().starts_with("#") {
             script_chan.send(TriggerFragmentMsg(self.page.id, url));
         } else {
             script_chan.send(TriggerLoadMsg(self.page.id, url));

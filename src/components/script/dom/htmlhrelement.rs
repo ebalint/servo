@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-use dom::bindings::codegen::BindingDeclarations::HTMLHRElementBinding;
+use dom::bindings::codegen::Bindings::HTMLHRElementBinding;
 use dom::bindings::codegen::InheritTypes::HTMLHRElementDerived;
 use dom::bindings::js::{JSRef, Temporary};
 use dom::bindings::error::ErrorResult;
@@ -52,7 +52,7 @@ pub trait HTMLHRElementMethods {
 
 impl<'a> HTMLHRElementMethods for JSRef<'a, HTMLHRElement> {
     fn Align(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetAlign(&mut self, _align: DOMString) -> ErrorResult {
@@ -60,7 +60,7 @@ impl<'a> HTMLHRElementMethods for JSRef<'a, HTMLHRElement> {
     }
 
     fn Color(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetColor(&mut self, _color: DOMString) -> ErrorResult {
@@ -76,7 +76,7 @@ impl<'a> HTMLHRElementMethods for JSRef<'a, HTMLHRElement> {
     }
 
     fn Size(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetSize(&mut self, _size: DOMString) -> ErrorResult {
@@ -84,7 +84,7 @@ impl<'a> HTMLHRElementMethods for JSRef<'a, HTMLHRElement> {
     }
 
     fn Width(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetWidth(&mut self, _width: DOMString) -> ErrorResult {

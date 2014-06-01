@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-use dom::bindings::codegen::BindingDeclarations::HTMLTimeElementBinding;
+use dom::bindings::codegen::Bindings::HTMLTimeElementBinding;
 use dom::bindings::codegen::InheritTypes::HTMLTimeElementDerived;
 use dom::bindings::js::{JSRef, Temporary};
 use dom::bindings::error::ErrorResult;
@@ -44,7 +44,7 @@ pub trait HTMLTimeElementMethods {
 
 impl<'a> HTMLTimeElementMethods for JSRef<'a, HTMLTimeElement> {
     fn DateTime(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetDateTime(&mut self, _dateTime: DOMString) -> ErrorResult {

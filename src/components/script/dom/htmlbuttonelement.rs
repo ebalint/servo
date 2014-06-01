@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-use dom::bindings::codegen::BindingDeclarations::HTMLButtonElementBinding;
+use dom::bindings::codegen::Bindings::HTMLButtonElementBinding;
 use dom::bindings::codegen::InheritTypes::HTMLButtonElementDerived;
 use dom::bindings::js::{JSRef, Temporary};
 use dom::bindings::error::ErrorResult;
@@ -92,7 +92,7 @@ impl<'a> HTMLButtonElementMethods for JSRef<'a, HTMLButtonElement> {
     }
 
     fn FormAction(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetFormAction(&mut self, _formaction: DOMString) -> ErrorResult {
@@ -100,7 +100,7 @@ impl<'a> HTMLButtonElementMethods for JSRef<'a, HTMLButtonElement> {
     }
 
     fn FormEnctype(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetFormEnctype(&mut self, _formenctype: DOMString) -> ErrorResult {
@@ -108,7 +108,7 @@ impl<'a> HTMLButtonElementMethods for JSRef<'a, HTMLButtonElement> {
     }
 
     fn FormMethod(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetFormMethod(&mut self, _formmethod: DOMString) -> ErrorResult {
@@ -124,7 +124,7 @@ impl<'a> HTMLButtonElementMethods for JSRef<'a, HTMLButtonElement> {
     }
 
     fn FormTarget(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetFormTarget(&mut self, _formtarget: DOMString) -> ErrorResult {
@@ -132,7 +132,7 @@ impl<'a> HTMLButtonElementMethods for JSRef<'a, HTMLButtonElement> {
     }
 
     fn Name(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetName(&mut self, _name: DOMString) -> ErrorResult {
@@ -140,7 +140,7 @@ impl<'a> HTMLButtonElementMethods for JSRef<'a, HTMLButtonElement> {
     }
 
     fn Type(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetType(&mut self, _type: DOMString) -> ErrorResult {
@@ -148,7 +148,7 @@ impl<'a> HTMLButtonElementMethods for JSRef<'a, HTMLButtonElement> {
     }
 
     fn Value(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetValue(&mut self, _value: DOMString) -> ErrorResult {
@@ -168,7 +168,7 @@ impl<'a> HTMLButtonElementMethods for JSRef<'a, HTMLButtonElement> {
     }
 
     fn ValidationMessage(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetValidationMessage(&mut self, _message: DOMString) -> ErrorResult {

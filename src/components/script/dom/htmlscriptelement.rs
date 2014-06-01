@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-use dom::bindings::codegen::BindingDeclarations::HTMLScriptElementBinding;
+use dom::bindings::codegen::Bindings::HTMLScriptElementBinding;
 use dom::bindings::codegen::InheritTypes::HTMLScriptElementDerived;
 use dom::bindings::codegen::InheritTypes::ElementCast;
 use dom::bindings::js::{JSRef, Temporary};
@@ -70,7 +70,7 @@ impl<'a> HTMLScriptElementMethods for JSRef<'a, HTMLScriptElement> {
     }
 
     fn Type(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetType(&mut self, _type: DOMString) -> ErrorResult {
@@ -78,7 +78,7 @@ impl<'a> HTMLScriptElementMethods for JSRef<'a, HTMLScriptElement> {
     }
 
     fn Charset(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetCharset(&mut self, _charset: DOMString) -> ErrorResult {
@@ -102,7 +102,7 @@ impl<'a> HTMLScriptElementMethods for JSRef<'a, HTMLScriptElement> {
     }
 
     fn CrossOrigin(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetCrossOrigin(&mut self, _cross_origin: DOMString) -> ErrorResult {
@@ -110,7 +110,7 @@ impl<'a> HTMLScriptElementMethods for JSRef<'a, HTMLScriptElement> {
     }
 
     fn Text(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetText(&mut self, _text: DOMString) -> ErrorResult {
@@ -118,7 +118,7 @@ impl<'a> HTMLScriptElementMethods for JSRef<'a, HTMLScriptElement> {
     }
 
     fn Event(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetEvent(&mut self, _event: DOMString) -> ErrorResult {
@@ -126,7 +126,7 @@ impl<'a> HTMLScriptElementMethods for JSRef<'a, HTMLScriptElement> {
     }
 
     fn HtmlFor(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetHtmlFor(&mut self, _html_for: DOMString) -> ErrorResult {

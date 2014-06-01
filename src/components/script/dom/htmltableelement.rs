@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-use dom::bindings::codegen::BindingDeclarations::HTMLTableElementBinding;
+use dom::bindings::codegen::Bindings::HTMLTableElementBinding;
 use dom::bindings::codegen::InheritTypes::HTMLTableElementDerived;
 use dom::bindings::js::{JSRef, Temporary};
 use dom::bindings::error::ErrorResult;
@@ -90,7 +90,7 @@ impl<'a> HTMLTableElementMethods for JSRef<'a, HTMLTableElement> {
     }
 
     fn Align(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetAlign(&self, _align: DOMString) -> ErrorResult {
@@ -98,7 +98,7 @@ impl<'a> HTMLTableElementMethods for JSRef<'a, HTMLTableElement> {
     }
 
     fn Border(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetBorder(&self, _border: DOMString) -> ErrorResult {
@@ -106,7 +106,7 @@ impl<'a> HTMLTableElementMethods for JSRef<'a, HTMLTableElement> {
     }
 
     fn Frame(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetFrame(&self, _frame: DOMString) -> ErrorResult {
@@ -114,7 +114,7 @@ impl<'a> HTMLTableElementMethods for JSRef<'a, HTMLTableElement> {
     }
 
     fn Rules(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetRules(&self, _rules: DOMString) -> ErrorResult {
@@ -122,7 +122,7 @@ impl<'a> HTMLTableElementMethods for JSRef<'a, HTMLTableElement> {
     }
 
     fn Summary(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetSummary(&self, _summary: DOMString) -> ErrorResult {
@@ -130,7 +130,7 @@ impl<'a> HTMLTableElementMethods for JSRef<'a, HTMLTableElement> {
     }
 
     fn Width(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetWidth(&self, _width: DOMString) -> ErrorResult {
@@ -138,7 +138,7 @@ impl<'a> HTMLTableElementMethods for JSRef<'a, HTMLTableElement> {
     }
 
     fn BgColor(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetBgColor(&self, _bg_color: DOMString) -> ErrorResult {
@@ -146,7 +146,7 @@ impl<'a> HTMLTableElementMethods for JSRef<'a, HTMLTableElement> {
     }
 
     fn CellPadding(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetCellPadding(&self, _cell_padding: DOMString) -> ErrorResult {
@@ -154,7 +154,7 @@ impl<'a> HTMLTableElementMethods for JSRef<'a, HTMLTableElement> {
     }
 
     fn CellSpacing(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetCellSpacing(&self, _cell_spacing: DOMString) -> ErrorResult {

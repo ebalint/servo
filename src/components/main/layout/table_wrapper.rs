@@ -194,9 +194,9 @@ impl Flow for TableWrapperFlow {
 impl fmt::Show for TableWrapperFlow {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         if self.is_float() {
-            write!(f.buf, "TableWrapperFlow(Float): {}", self.block_flow.box_)
+            write!(f, "TableWrapperFlow(Float): {}", self.block_flow.box_)
         } else {
-            write!(f.buf, "TableWrapperFlow: {}", self.block_flow.box_)
+            write!(f, "TableWrapperFlow: {}", self.block_flow.box_)
         }
     }
 }

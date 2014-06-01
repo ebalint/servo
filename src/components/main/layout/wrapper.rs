@@ -46,7 +46,7 @@ use script::dom::text::Text;
 use servo_msg::constellation_msg::{PipelineId, SubpageId};
 use servo_util::namespace;
 use servo_util::namespace::Namespace;
-use std::cast;
+use std::mem;
 use std::cell::{Ref, RefMut};
 use std::kinds::marker::ContravariantLifetime;
 use style::{PropertyDeclarationBlock, TElement, TNode, AttrSelector, SpecificNamespace};
@@ -117,7 +117,7 @@ pub trait TLayoutNode {
     /// If this is a text node, copies out the text. If this is not a text node, fails.
     ///
     /// FIXME(pcwalton): Don't copy text. Atomically reference count instead.
-    fn text(&self) -> ~str;
+    fn text(&self) -> String;
 
     /// Returns the first child of this node.
     fn first_child(&self) -> Option<Self>;
@@ -179,7 +179,7 @@ impl<'ln> TLayoutNode for LayoutNode<'ln> {
         }
     }
 
-    fn text(&self) -> ~str {
+    fn text(&self) -> String {
         unsafe {
             if !self.get().is_text() {
                 fail!("not text!")
@@ -247,7 +247,7 @@ impl<'ln> TNode<LayoutElement<'ln>> for LayoutNode<'ln> {
             let elem: JS<Element> = self.node.transmute_copy();
             let element = &*elem.unsafe_get();
             LayoutElement {
-                element: cast::transmute_lifetime(element),
+                element: mem::transmute(element),
             }
         }
     }
@@ -386,16 +386,16 @@ impl<'le> TElement for LayoutElement<'le> {
     }
 }
 
-fn get_content(content_list: &content::T) -> ~str {
+fn get_content(content_list: &content::T) -> String {
     match *content_list {
         content::Content(ref value) => {
             let iter = &mut value.clone().move_iter().peekable();
             match iter.next() {
                 Some(content::StringContent(content)) => content,
-                _ => "".to_owned(),
+                _ => "".to_string(),
             }
         }
-        _ => "".to_owned(),
+        _ => "".to_string(),
     }
 }
 
@@ -444,7 +444,7 @@ impl<'ln> TLayoutNode for ThreadSafeLayoutNode<'ln> {
     }
 
     unsafe fn get<'a>(&'a self) -> &'a Node { // this change.
-        cast::transmute::<*mut Node,&'a Node>(self.get_jsmanaged().unsafe_get())
+        mem::transmute::<*mut Node,&'a Node>(self.get_jsmanaged().unsafe_get())
     }
 
     fn first_child(&self) -> Option<ThreadSafeLayoutNode<'ln>> {
@@ -467,7 +467,7 @@ impl<'ln> TLayoutNode for ThreadSafeLayoutNode<'ln> {
         }
     }
 
-    fn text(&self) -> ~str {
+    fn text(&self) -> String {
         if self.pseudo == Before || self.pseudo == After {
             let layout_data_ref = self.borrow_layout_data();
             let node_layout_data_wrapper = layout_data_ref.get_ref();
@@ -584,7 +584,7 @@ impl<'ln> ThreadSafeLayoutNode<'ln> {
     #[inline(always)]
     pub fn borrow_layout_data<'a>(&'a self) -> Ref<'a,Option<LayoutDataWrapper>> {
         unsafe {
-            cast::transmute(self.get().layout_data.borrow())
+            mem::transmute(self.get().layout_data.borrow())
         }
     }
 
@@ -592,7 +592,7 @@ impl<'ln> ThreadSafeLayoutNode<'ln> {
     #[inline(always)]
     pub fn mutate_layout_data<'a>(&'a self) -> RefMut<'a,Option<LayoutDataWrapper>> {
         unsafe {
-            cast::transmute(self.get().layout_data.borrow_mut())
+            mem::transmute(self.get().layout_data.borrow_mut())
         }
     }
 
@@ -712,6 +712,6 @@ pub type UnsafeLayoutNode = (uint, uint);
 
 pub fn layout_node_to_unsafe_layout_node(node: &LayoutNode) -> UnsafeLayoutNode {
     unsafe {
-        cast::transmute_copy(node)
+        mem::transmute_copy(node)
     }
 }

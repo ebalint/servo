@@ -5,7 +5,7 @@
 use dom::bindings::js::{JS, JSRef, Temporary};
 use dom::bindings::utils::{Reflectable, Reflector, reflect_dom_object};
 use dom::bindings::error::Fallible;
-use dom::bindings::codegen::BindingDeclarations::BlobBinding;
+use dom::bindings::codegen::Bindings::BlobBinding;
 use dom::window::Window;
 use servo_util::str::DOMString;
 
@@ -47,7 +47,7 @@ impl<'a> BlobMethods for JSRef<'a, Blob> {
     }
 
     fn Type(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn Slice(&self, _start: Option<i64>, _end: Option<i64>, _contentType: Option<DOMString>) -> Temporary<Blob> {

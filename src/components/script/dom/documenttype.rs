@@ -3,7 +3,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 use dom::bindings::codegen::InheritTypes::{DocumentTypeDerived, NodeCast};
-use dom::bindings::codegen::BindingDeclarations::DocumentTypeBinding;
+use dom::bindings::codegen::Bindings::DocumentTypeBinding;
 use dom::bindings::js::{JSRef, Temporary};
 use dom::document::Document;
 use dom::eventtarget::{EventTarget, NodeTargetTypeId};
@@ -34,8 +34,8 @@ impl DocumentType {
         DocumentType {
             node: Node::new_inherited(DoctypeNodeTypeId, document),
             name: name,
-            public_id: public_id.unwrap_or("".to_owned()),
-            system_id: system_id.unwrap_or("".to_owned())
+            public_id: public_id.unwrap_or("".to_string()),
+            system_id: system_id.unwrap_or("".to_string())
         }
     }
 

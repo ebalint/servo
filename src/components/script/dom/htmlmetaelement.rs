@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-use dom::bindings::codegen::BindingDeclarations::HTMLMetaElementBinding;
+use dom::bindings::codegen::Bindings::HTMLMetaElementBinding;
 use dom::bindings::codegen::InheritTypes::HTMLMetaElementDerived;
 use dom::bindings::js::{JSRef, Temporary};
 use dom::bindings::error::ErrorResult;
@@ -50,7 +50,7 @@ pub trait HTMLMetaElementMethods {
 
 impl<'a> HTMLMetaElementMethods for JSRef<'a, HTMLMetaElement> {
     fn Name(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetName(&mut self, _name: DOMString) -> ErrorResult {
@@ -58,7 +58,7 @@ impl<'a> HTMLMetaElementMethods for JSRef<'a, HTMLMetaElement> {
     }
 
     fn HttpEquiv(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetHttpEquiv(&mut self, _http_equiv: DOMString) -> ErrorResult {
@@ -66,7 +66,7 @@ impl<'a> HTMLMetaElementMethods for JSRef<'a, HTMLMetaElement> {
     }
 
     fn Content(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetContent(&mut self, _content: DOMString) -> ErrorResult {
@@ -74,7 +74,7 @@ impl<'a> HTMLMetaElementMethods for JSRef<'a, HTMLMetaElement> {
     }
 
     fn Scheme(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetScheme(&mut self, _scheme: DOMString) -> ErrorResult {

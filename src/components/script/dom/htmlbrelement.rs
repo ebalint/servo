@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-use dom::bindings::codegen::BindingDeclarations::HTMLBRElementBinding;
+use dom::bindings::codegen::Bindings::HTMLBRElementBinding;
 use dom::bindings::codegen::InheritTypes::HTMLBRElementDerived;
 use dom::bindings::error::ErrorResult;
 use dom::bindings::js::{JSRef, Temporary};
@@ -44,7 +44,7 @@ pub trait HTMLBRElementMethods {
 
 impl<'a> HTMLBRElementMethods for JSRef<'a, HTMLBRElement> {
     fn Clear(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetClear(&mut self, _text: DOMString) -> ErrorResult {

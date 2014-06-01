@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-use dom::bindings::codegen::BindingDeclarations::HTMLTableSectionElementBinding;
+use dom::bindings::codegen::Bindings::HTMLTableSectionElementBinding;
 use dom::bindings::codegen::InheritTypes::HTMLTableSectionElementDerived;
 use dom::bindings::js::{JSRef, Temporary};
 use dom::bindings::error::ErrorResult;
@@ -55,7 +55,7 @@ impl<'a> HTMLTableSectionElementMethods for JSRef<'a, HTMLTableSectionElement> {
     }
 
     fn Align(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetAlign(&mut self, _align: DOMString) -> ErrorResult {
@@ -63,7 +63,7 @@ impl<'a> HTMLTableSectionElementMethods for JSRef<'a, HTMLTableSectionElement> {
     }
 
     fn Ch(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetCh(&mut self, _ch: DOMString) -> ErrorResult {
@@ -71,7 +71,7 @@ impl<'a> HTMLTableSectionElementMethods for JSRef<'a, HTMLTableSectionElement> {
     }
 
     fn ChOff(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetChOff(&mut self, _ch_off: DOMString) -> ErrorResult {
@@ -79,7 +79,7 @@ impl<'a> HTMLTableSectionElementMethods for JSRef<'a, HTMLTableSectionElement> {
     }
 
     fn VAlign(&self) -> DOMString {
-        "".to_owned()
+        "".to_string()
     }
 
     fn SetVAlign(&mut self, _v_align: DOMString) -> ErrorResult {
